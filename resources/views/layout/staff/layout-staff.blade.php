@@ -21,6 +21,7 @@
 </head>
 
 <body class="{{ $class ?? '' }}">
+    <x-flash-message />
 
     {{-- @guest
     @yield('content')
@@ -65,6 +66,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('js/staff/argon-dashboard.js') }}"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     @stack('js');
 </body>
 

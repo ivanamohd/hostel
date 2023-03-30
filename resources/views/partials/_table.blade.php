@@ -3,7 +3,7 @@
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
                 <button type="submit" class="input-group-text text-body"><i class="fas fa-search"
-                        aria-hidden="true"></i></button>
+                        style="color:rgb(200, 200, 200)" aria-hidden="true"></i></button>
                 <input type="text" class="form-control" name="search" placeholder="Type here...">
                 <button type="refresh" class="input-group-text text-body"><i style="color:rgb(200, 200, 200)"
                         class="fas fa-trash" aria-hidden="true"></i></button>

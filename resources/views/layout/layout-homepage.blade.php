@@ -35,8 +35,7 @@
                             target="_blank" class="nav-link"></i> Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://demos.creative-tim.com/paper-kit-2/docs/1.0/getting-started/introduction.html"
-                            target="_blank" class="nav-link btn btn-outline-default2 btn-round"></i> Get
+                        <a href="/register" class="nav-link btn btn-outline-default2 btn-round"></i> Get
                             Started</a>
                     </li>
                 </ul>

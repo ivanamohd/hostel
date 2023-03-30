@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ReportController;
-use App\Models\Report;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +30,23 @@ Route::get('/dashboard', function () {
 // All Reports
 Route::get('/reports', [ReportController::class, 'index']);
 
+// Create Report
+Route::get('/reports/create', [ReportController::class, 'create']);
+
+// Store Report
+Route::post('/reports', [ReportController::class, 'store']);
+
+// Show Edit Form
+Route::get('/reports/{report}/edit', [ReportController::class, 'edit']);
+
+// Update Report
+Route::put('/reports/{report}', [ReportController::class, 'update']);
+
+// Delete Report
+Route::delete('/reports/{report}', [ReportController::class, 'destroy']);
+
 // Single Report
 Route::get('/reports/{report}', [ReportController::class, 'show']);
 
-// Create Report
-Route::get('/reports/create', [ReportController::class, 'create']);
+// Show Register Form
+Route::get('/register', [UserController::class, 'create']);

@@ -2,7 +2,7 @@
 
 @section('content')
 @include('layout.staff.topnav', ['title' => 'Tables'])
-<div class="container-fluid py-4">
+<div class=" container-fluid py-4">
 
     {{-- Urgent Reports Table --}}
     <div class="row">
@@ -10,6 +10,11 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>Urgent Reports</h6>
+                </div>
+                <div>
+                    <a href="/reports/create">
+                        <button class="text-uppercase text-secondary text-xxs font-weight-bolder btn btn-sm fas fa-plus"
+                            style="position:absolute; top:1rem; right:1rem"></button></a>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -34,22 +39,26 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @unless (count($reports) == 0)
                                 @foreach ($reports as $report)
                                 <tr>
                                     <td>
                                         <div class="ps-3">
-                                            {{-- <p class="text-xs font-weight-bold mb-0">{{$report->id}}</p> --}}
+                                            {{-- <p class="text-xs font-weight-bold mb-0">
+                                                {{$report->id}}</p> --}}
                                             <span class="text-secondary text-xs font-weight-bold">{{$report->id}}</span>
                                         </div>
                                     </td>
                                     {{-- <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{$report->category}}</p>
+                                        <p class="text-xs font-weight-bold mb-0">
+                                            {{$report->category}}</p>
                                         <p class="text-xs text-secondary mb-0">Organization</p>
                                     </td> --}}
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{$report->category}}</p>
+                                        <p class="text-xs font-weight-bold mb-0">
+                                            {{$report->category}}</p>
                                         <p class="text-xs text-secondary mb-0">{{
-                                            Str::limit($report->description, '80', '...') }}</p>
+                                            Str::limit($report->description, '50', '...') }}</p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         <span class="badge badge-sm bg-gradient-success">Urgent</span>
@@ -63,16 +72,37 @@
                                         <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="/reports/{{$report->id}}"
+                                        {{-- <a href="/reports/{{$report->id}}/edit"
                                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                             data-original-title="Edit user">
                                             Edit
+                                        </a> --}}
+                                        <a href="/reports/{{$report->id}}/edit"
+                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
+                                            <i class="fa fa-eye"></i>
                                         </a>
+                                        <a href="/reports/{{$report->id}}/edit"
+                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <form method="POST" action="/reports/{{$report->id}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="fa fa-trash text-secondary font-weight-bold text-xs bg-white"
+                                                style="border: none"></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
+                                @else
+                                <p class="mx-4 text-xs">No Records Found</p>
+                                @endunless
                             </tbody>
                         </table>
+                    </div>
+                    <!-- Card footer -->
+                    <div class="card-footer pb-0">
+                        {{$reports->links()}}
                     </div>
                 </div>
             </div>
