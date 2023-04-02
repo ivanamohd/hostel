@@ -15,11 +15,13 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('category');
             $table->longText('description');
-            $table->integer('priority');
+            $table->string('priority', 10);
             $table->string('status');
             $table->string('hostel');
+            $table->string('evidence')->nullable();
             $table->timestamps();
         });
     }

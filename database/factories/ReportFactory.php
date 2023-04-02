@@ -14,9 +14,10 @@ class ReportFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => 1,
             'category' => 'awam',
             'description' => $this->faker->paragraph(1),
-            'priority' => '3',
+            'priority' => 'High',
             'status' => 'completed',
             'hostel' => $this->faker->company(),
         ];

@@ -23,30 +23,47 @@ Route::get('/dashboard', function () {
     return view('staff.dashboard');
 });
 
-// Route::get('/reports', function () {
-//     return view('staff.reports');
+// Route::get('/dashboard', function () {
+//     return view('student.dashboard');
 // });
 
-// All Reports
-Route::get('/reports', [ReportController::class, 'index']);
+Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
+    // All Reports
+    Route::get('/reports', [ReportController::class, 'index']);
 
-// Create Report
-Route::get('/reports/create', [ReportController::class, 'create']);
+    // Create Report Form
+    Route::get('/reports/create', [ReportController::class, 'create']);
 
-// Store Report
-Route::post('/reports', [ReportController::class, 'store']);
+    // Store Report
+    Route::post('/reports', [ReportController::class, 'store']);
 
-// Show Edit Form
-Route::get('/reports/{report}/edit', [ReportController::class, 'edit']);
+    // Show Edit Form
+    Route::get('/reports/{report}/edit', [ReportController::class, 'edit']);
 
-// Update Report
-Route::put('/reports/{report}', [ReportController::class, 'update']);
+    // Update Report
+    Route::put('/reports/{report}', [ReportController::class, 'update']);
 
-// Delete Report
-Route::delete('/reports/{report}', [ReportController::class, 'destroy']);
+    // Delete Report
+    Route::delete('/reports/{report}', [ReportController::class, 'destroy']);
 
-// Single Report
-Route::get('/reports/{report}', [ReportController::class, 'show']);
+    // Manage Reports
+    Route::get('/reports/manage', [ReportController::class, 'manage']);
+
+    // Single Report
+    Route::get('/reports/{report}', [ReportController::class, 'show']);
+});
 
 // Show Register Form
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+
+// Create New User
+Route::post('/users', [UserController::class, 'store']);
+
+// Log User Out
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+// Show Login Form
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+// Log In User
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);

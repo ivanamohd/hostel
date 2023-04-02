@@ -5300,7 +5300,7 @@ textarea.form-control-lg {
 .page-link {
   position: relative;
   display: block;
-  color: #fb6340;
+  color: #EEE1C6;
   background-color: #fff;
   border: 1px solid #dee2e6;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -5312,14 +5312,15 @@ textarea.form-control-lg {
 }
 .page-link:hover {
   z-index: 2;
-  color: #ea3005;
-  background-color: #e9ecef;
-  border-color: #dee2e6;
+  color: #EEE1C6; 
+  /* custom */
+  background-color: #EEE1C6;
+  border-color: #EEE1C6;
 }
 .page-link:focus {
   z-index: 3;
-  color: #ea3005;
-  background-color: #e9ecef;
+  color: #EEE1C6;
+  background-color: #EEE1C6;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(251, 99, 64, 0.25);
 }
@@ -5329,9 +5330,9 @@ textarea.form-control-lg {
 }
 .page-item.active .page-link {
   z-index: 3;
-  color: #fff;
-  background-color: #fb6340;
-  border-color: #fb6340;
+  color: #6c757d;
+  background-color: #EEE1C6;
+  border-color: #EEE1C6;
 }
 .page-item.disabled .page-link {
   color: #6c757d;

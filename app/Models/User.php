@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'hostel',
         'password',
     ];
 
@@ -41,4 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relationship with Reports
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'user_id');
+    }
 }

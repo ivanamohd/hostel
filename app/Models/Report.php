@@ -9,6 +9,8 @@ class Report extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'category', 'description', 'priority', 'status', 'hostel', 'evidence'];
+
     public function scopeFilter($query, array $filters)
     {
         if ($filters['status'] ?? false) {
@@ -20,6 +22,12 @@ class Report extends Model
                 ->orWhere('priority', 'like', '%' . request('search') . '%')
                 ->orWhere('category', 'like', '%' . request('search') . '%');
         }
+    }
+
+    // Relationship to User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // public static function find($id)
