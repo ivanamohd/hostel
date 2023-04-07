@@ -9,12 +9,16 @@ class Report extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'category', 'description', 'priority', 'status', 'hostel', 'evidence'];
+    protected $fillable = ['user_id', 'category', 'description', 'priority', 'status', 'hostel', 'evidence', 'contact', 'block', 'floor', 'room', 'role'];
 
     public function scopeFilter($query, array $filters)
     {
         if ($filters['status'] ?? false) {
             $query->where('status', 'like', '%' . request('status') . '%');
+        }
+
+        if ($filters['priority'] ?? false) {
+            $query->where('priority', 'like', '%' . request('priority') . '%');
         }
 
         if ($filters['search'] ?? false) {

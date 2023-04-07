@@ -18,8 +18,12 @@ class ReportFactory extends Factory
             'category' => 'awam',
             'description' => $this->faker->paragraph(1),
             'priority' => 'High',
-            'status' => 'completed',
+            'status' => 'Resolved',
             'hostel' => $this->faker->company(),
+            'block' => 'AA1',
+            'floor' => '1',
+            'room' => '1022',
+            'role' => '0',
         ];
     }
 }

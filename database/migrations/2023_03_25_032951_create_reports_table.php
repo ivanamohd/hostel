@@ -18,9 +18,13 @@ class CreateReportsTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('category');
             $table->longText('description');
-            $table->string('priority', 10);
+            $table->string('priority', 20);
             $table->string('status');
             $table->string('hostel');
+            $table->string('block')->nullable();
+            $table->string('floor')->nullable();
+            $table->string('room')->nullable();
+            $table->string('role');
             $table->string('evidence')->nullable();
             $table->timestamps();
         });

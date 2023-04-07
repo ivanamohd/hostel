@@ -7,15 +7,12 @@
 
 <main class="main-content mt-0">
     <div class="container pt-3">
-        <div class="col d-flex justify-content-center mx-auto">
-            <div class="mx-auto">
-                <div class="card z-index-0" style="width:590px">
+        <div class="justify-content-center">
+            <div class="col-xl-7 col-lg-5 col-md-7 mx-auto">
+                <div class="card z-index-0" style="width:550px">
                     <div class="card-header text-center pt-4">
-                        <h5>Edit Ticket ID {{$report->id}}</h5>
+                        <h5>Edit Ticket ID {{$report['id']}}</h5>
                     </div>
-                    <a href="/staff/reports/{{$report->id}}"> <button
-                            class="text-uppercase text-secondary ni ni-bold-left"
-                            style="position:absolute; top:1.3rem; left:1rem; border:none; background:none; margin-top:10px; margin-right:10px"></button></a>
                     <div class="card-body">
                         <form method="POST" action="/staff/reports/{{$report->id}}" enctype="multipart/form-data">
                             @csrf
@@ -46,12 +43,10 @@
                             <div class="mb-3">
                                 <label for="priority">Priority:</label>
                                 <select name="priority" class="form-control">
-                                    <option value="Unassigned" {{ $report->priority=='Unassigned' ? 'selected' : ''
-                                        }}>Unassigned</option>
-                                    <option value="Low" {{ $report->priority=='Low' ? 'selected' : '' }}>Low</option>
+                                    <option value="High" {{ $report->priority=='High' ? 'selected' : '' }}>High</option>
                                     <option value="Medium" {{ $report->priority=='Medium' ? 'selected' : '' }}>Medium
                                     </option>
-                                    <option value="High" {{ $report->priority=='High' ? 'selected' : '' }}>High</option>
+                                    <option value="Low" {{ $report->priority=='Low' ? 'selected' : '' }}>Low</option>
                                 </select>
                             </div>
                             @error('priority')
@@ -77,6 +72,22 @@
                                     </option>
                                 </select>
                             </div>
+                            @error('priority')
+                            <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                            @enderror
+
+                            <div class="mb-3">
+                                <label for="evidence">Evidence:</label>
+                                <input type="file" class="form-control" name="evidence"><span>
+                                </span>
+                            </div>
+                            <img class="w-45 mr-6 mb-1"
+                                style="display: block; margin-left: auto; margin-right: auto; width: 50%;"
+                                src="{{$report->evidence ? asset('storage/'.$report->evidence) : asset('/images/noimage.jpg')}}"
+                                alt="" />
+                            @error('evidence')
+                            <p class=" text-danger text-xs mt-1 px-1">{{$message}}</p>
+                            @enderror
 
                             {{-- <input type="hidden" name="hostel" value="KTDI"> --}}
                             {{-- <input type="hidden" name="contact" value="{{$student->contact}}">
@@ -110,7 +121,8 @@
 
 
                             <div class="text-center">
-                                <button class="btn bg-gradient-dark w-100 my-4 mb-2">Update</button>
+                                <button class="btn bg-gradient-dark w-50 my-4 mb-2 mt-2">Edit</button>
+                                <a href="/reports" class="btn bg-white w-30 my-4 mb-2 mt-2">Back</a>
                             </div>
                         </form>
                     </div>

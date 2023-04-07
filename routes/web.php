@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +20,46 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/dashboard', function () {
-    return view('staff.dashboard');
+Route::middleware('auth', 'isStudent')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('student.dashboard');
+    });
+
+    // All Reports
+    Route::get('/reports', [ReportController::class, 'index']);
+
+    // Create Report Form
+    Route::get('/reports/create', [ReportController::class, 'create']);
+
+    // Store Report
+    Route::post('/reports', [ReportController::class, 'store']);
+
+    // Delete Report
+    Route::delete('/reports/{report}', [ReportController::class, 'destroy']);
+
+    // Manage Reports
+    Route::get('/reports/manage', [ReportController::class, 'manage']);
+
+    // Single Report
+    Route::get('/reports/{report}', [ReportController::class, 'show']);
+
+    // Show Edit Profile
+    Route::get('/profile/{student}/edit', [StudentController::class, 'edit']);
+
+    // Update Profile
+    Route::put('/profile/{student}', [StudentController::class, 'update']);
+
+    // Show Profile
+    Route::get('/profile/{student}', [StudentController::class, 'show']);
 });
 
-// Route::get('/dashboard', function () {
-//     return view('student.dashboard');
-// });
-
 Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('staff.dashboard');
+    });
+
     // All Reports
     Route::get('/reports', [ReportController::class, 'index']);
 
@@ -48,6 +80,9 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
 
     // Manage Reports
     Route::get('/reports/manage', [ReportController::class, 'manage']);
+
+    // All Students
+    Route::get('/students', [StudentController::class, 'index']);
 
     // Single Report
     Route::get('/reports/{report}', [ReportController::class, 'show']);

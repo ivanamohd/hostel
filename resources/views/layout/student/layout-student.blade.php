@@ -20,24 +20,12 @@
     <link href="{{ asset('css/staff/argon-dashboard.css') }}" rel="stylesheet">
 </head>
 
-<body class="{{ $class ?? '' }}">
-    <x-flash-message />
+<body>
+    <x-message />
 
-    {{-- @guest
-    @yield('content')
-    @endguest --}}
-
-    {{-- @auth
-    @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register',
-    'recover-password', 'rtl', 'virtual-reality'])) --}}
-    {{-- @yield('content') --}}
-    {{-- @else
-    @if (!in_array(request()->route()->getName(), ['profile', 'profile-static']))
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
-    @elseif (in_array(request()->route()->getName(), ['profile-static', 'profile'])) --}}
     <div class="position-absolute w-100 min-height-300 top-0"
-        style="background-image: url({{ asset('images/utm-lake.png'); }}); background-position-y: 70%;">
-        <span class="mask opacity-6" style="background-color: #8F8F8C"></span>
+        style="background-image: url({{ asset('images/utm-hill.jpg'); }}); background-position-y: 80%;">
+        <span class="mask opacity-6 bg-student-1"></span>
     </div>
     {{-- @endif --}}
     @include('layout.student.sidenav')

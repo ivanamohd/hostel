@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-expand-lg border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4 navbar-nav mx-auto"
-                style="background:rgba(238,225,198, 0.5)">
+                style="background:rgba(71, 71, 71, 0.5)">
                 <div class="container-fluid">
                     <span style="margin:auto" class="text-white">
                         {{session('message')}}

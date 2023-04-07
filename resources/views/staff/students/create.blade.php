@@ -43,8 +43,6 @@
                                     <option value="Medium" {{ old('priority')=='Medium' ? 'selected' : '' }}>Medium
                                     </option>
                                     <option value="Low" {{ old('priority')=='Low' ? 'selected' : '' }}>Low</option>
-                                    <option value="Unassigned" {{ old('priority')=='Unassigned' ? 'selected' : '' }}>
-                                        Unassigned</option>
                                 </select>
                             </div>
                             @error('priority')

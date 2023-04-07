@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StaffMiddleware
+class StudentMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,8 +18,8 @@ class StaffMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if (Auth::user()->role == '1') {
-                // Staff
+            if (Auth::user()->role == '0') {
+                // Student
                 return $next($request);
             }
         }

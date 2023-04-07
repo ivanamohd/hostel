@@ -1,7 +1,7 @@
-@extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
+@extends('layout.student.layout-student', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-@include('layout.staff.topnav', ['title' => 'Add Ticket'])
+@include('layout.student.topnav', ['title' => 'Add Ticket'])
 
 <main class="main-content mt-0">
     <div class="container pt-3">
@@ -11,6 +11,9 @@
                     <div class="card-header text-center pt-4">
                         <h5>New Ticket</h5>
                     </div>
+                    <a href="/reports">
+                        <button class="text-uppercase text-secondary ni ni-bold-left"
+                            style="position:absolute; top:1.3rem; left:1rem; border:none; background:none; margin-top:10px; margin-right:10px"></button></a>
                     <div class="card-body">
                         <form method="POST" action="/reports" enctype="multipart/form-data">
                             @csrf
@@ -21,6 +24,9 @@
                                     <option value="Elektrik" {{ old('category')=='Elektrik' ? 'selected' : '' }}>
                                         Elektrik</option>
                                     <option value="Perabot" {{ old('category')=='Perabot' ? 'selected' : '' }}>Perabot
+                                    </option>
+                                    <option value="Lain-lain" {{ old('category')=='Lain-lain' ? 'selected' : '' }}>
+                                        Lain-lain
                                     </option>
                                 </select>
                             </div>
@@ -36,22 +42,9 @@
                             <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
                             @enderror
 
-                            <div class="mb-3">
-                                <select name="priority" class="form-control">
-                                    <option value="" disabled selected>Priority</option>
-                                    <option value="High" {{ old('priority')=='High' ? 'selected' : '' }}>High</option>
-                                    <option value="Medium" {{ old('priority')=='Medium' ? 'selected' : '' }}>Medium
-                                    </option>
-                                    <option value="Low" {{ old('priority')=='Low' ? 'selected' : '' }}>Low</option>
-                                </select>
-                            </div>
-                            @error('priority')
-                            <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
-                            @enderror
-
                             <label for="evidence">Evidence:</label>
                             <div class="mb-3">
-                                <input type="file" class="form-control" name="evidence">
+                                <input type="file" class="form-control" name="evidence" accept="image/*" required>
                             </div>
                             @error('evidence')
                             <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
@@ -71,9 +64,6 @@
                                 </label>
                             </div> --}}
 
-                            <input type="hidden" name="status" value="Pending">
-                            <input type="hidden" name="hostel" value="KTDI">
-
                             <div class="text-center">
                                 <button class="btn bg-gradient-dark w-100 my-4 mb-2">Create</button>
                             </div>
@@ -84,5 +74,5 @@
         </div>
     </div>
 </main>
-@include('layout.staff.footer')
+@include('layout.student.footer')
 @endsection

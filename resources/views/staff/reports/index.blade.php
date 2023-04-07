@@ -4,15 +4,15 @@
 @include('layout.staff.topnav', ['title' => 'Tables'])
 <div class=" container-fluid py-4">
 
-    {{-- Urgent Reports Table --}}
+    {{-- All Reports Table --}}
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Urgent Reports</h6>
+                    <h6>All Reports</h6>
                 </div>
                 <div>
-                    <a href="/reports/create">
+                    <a href="/staff/reports/create">
                         <button class="text-uppercase text-secondary text-xxs font-weight-bolder btn btn-sm fas fa-plus"
                             style="position:absolute; top:1rem; right:1rem"></button></a>
                 </div>
@@ -45,53 +45,82 @@
                                 <tr>
                                     <td>
                                         <div class="ps-3">
-                                            {{-- <p class="text-xs font-weight-bold mb-0">
-                                                {{$report->id}}</p> --}}
                                             <span class="text-secondary text-xs font-weight-bold">{{$report->id}}</span>
                                         </div>
                                     </td>
-                                    {{-- <td>
-                                        <p class="text-xs font-weight-bold mb-0">
-                                            {{$report->category}}</p>
-                                        <p class="text-xs text-secondary mb-0">Organization</p>
-                                    </td> --}}
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">
                                             {{$report->category}}</p>
                                         <p class="text-xs text-secondary mb-0">{{
                                             Str::limit($report->description, '50', '...') }}</p>
                                     </td>
+
                                     <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Urgent</span>
+                                        <a href="/staff/reports/?priority={{$report->priority}}">
+                                            @if($report->priority == 'Unassigned')
+                                            <span class="badge badge-sm bg-gradient-faded-dark"
+                                                style="width:85px">unassigned</span>
+
+                                            @elseif($report->priority == 'Low')
+                                            <span class="badge badge-sm bg-gradient-faded-info"
+                                                style="width:85px">Low</span>
+
+                                            @elseif($report->priority == 'Medium')
+                                            <span class="badge badge-sm bg-gradient-faded-warning"
+                                                style="width:85px">Medium</span>
+
+                                            @elseif($report->priority == 'High')
+                                            <span class="badge badge-sm bg-gradient-faded-danger"
+                                                style="width:85px">High</span>
+
+                                            @endif
+                                        </a>
                                     </td>
+
                                     <td class="align-middle text-center text-sm">
-                                        <a href="/reports/?status={{$report->status}}">
-                                            <span class="badge badge-sm bg-gradient-success">{{$report->status}}</span>
+                                        <a href="/staff/reports/?status={{$report->status}}">
+                                            @if($report->status == 'Pending')
+                                            <span class="badge badge-sm bg-gradient-faded-dark"
+                                                style="width:85px">{{$report->status}}</span>
+                                            @elseif($report->status == 'In Review')
+                                            <span class="badge badge-sm bg-gradient-faded-secondary"
+                                                style="width:85px">{{$report->status}}</span>
+                                            @elseif($report->status == 'In Progress')
+                                            <span class="badge badge-sm bg-gradient-info"
+                                                style="width:85px">{{$report->status}}</span>
+                                            @elseif($report->status == 'Fixing Day')
+                                            <span class="badge badge-sm bg-gradient-warning"
+                                                style="width:85px">{{$report->status}}</span>
+                                            @elseif($report->status == 'Resolved')
+                                            <span class="badge badge-sm bg-gradient-success"
+                                                style="width:85px">{{$report->status}}</span>
+                                            @endif
                                         </a>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{$report->created_at->format('d/m/Y')}}</span>
                                     </td>
                                     <td class="align-middle">
-                                        {{-- <a href="/reports/{{$report->id}}/edit"
+                                        <a href="/staff/reports/{{$report->id}}"
                                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                             data-original-title="Edit user">
-                                            Edit
-                                        </a> --}}
-                                        <a href="/reports/{{$report->id}}/edit"
+                                            View
+                                        </a>
+                                        {{-- <a href="/staff/reports/{{$report->id}}/"
                                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="/reports/{{$report->id}}/edit"
+                                        <a href="/staff/reports/{{$report->id}}/edit"
                                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <form method="POST" action="/reports/{{$report->id}}">
+                                        <form method="POST" action="/staff/reports/{{$report->id}}">
                                             @csrf
                                             @method('DELETE')
                                             <button class="fa fa-trash text-secondary font-weight-bold text-xs bg-white"
                                                 style="border: none"></button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -104,262 +133,6 @@
                     <!-- Card footer -->
                     <div class="card-footer pb-0">
                         {{$reports->links()}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- All Reports Table --}}
-    <div class="row">
-        <div class="col-12">
-            <div class="card mb-4">
-                <div class="card-header pb-0">
-                    <h6>All Reports</h6>
-                </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table align-items-center justify-content-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Project</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Budget</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Status</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                                        Completion</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="/img/small-logos/logo-spotify.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm">Spotify</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm font-weight-bold mb-0">$2,500</p>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">working</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="me-2 text-xs font-weight-bold">60%</span>
-                                            <div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-info" role="progressbar"
-                                                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                                        style="width: 60%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button class="btn btn-link text-secondary mb-0">
-                                            <i class="fa fa-ellipsis-v text-xs"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="/img/small-logos/logo-invision.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2" alt="invision">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm">Invision</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm font-weight-bold mb-0">$5,000</p>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">done</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="me-2 text-xs font-weight-bold">100%</span>
-                                            <div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-success" role="progressbar"
-                                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
-                                                        style="width: 100%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-xs"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="/img/small-logos/logo-jira.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2" alt="jira">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm">Jira</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm font-weight-bold mb-0">$3,400</p>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">canceled</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="me-2 text-xs font-weight-bold">30%</span>
-                                            <div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-danger" role="progressbar"
-                                                        aria-valuenow="30" aria-valuemin="0" aria-valuemax="30"
-                                                        style="width: 30%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-xs"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="/img/small-logos/logo-slack.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2" alt="slack">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm">Slack</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm font-weight-bold mb-0">$1,000</p>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">canceled</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="me-2 text-xs font-weight-bold">0%</span>
-                                            <div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-success" role="progressbar"
-                                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
-                                                        style="width: 0%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-xs"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="/img/small-logos/logo-webdev.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2" alt="webdev">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm">Webdev</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm font-weight-bold mb-0">$14,000</p>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">working</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="me-2 text-xs font-weight-bold">80%</span>
-                                            <div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-info" role="progressbar"
-                                                        aria-valuenow="80" aria-valuemin="0" aria-valuemax="80"
-                                                        style="width: 80%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-xs"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="/img/small-logos/logo-xd.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2" alt="xd">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h6 class="mb-0 text-sm">Adobe XD</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-sm font-weight-bold mb-0">$2,300</p>
-                                    </td>
-                                    <td>
-                                        <span class="text-xs font-weight-bold">done</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <span class="me-2 text-xs font-weight-bold">100%</span>
-                                            <div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-gradient-success" role="progressbar"
-                                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
-                                                        style="width: 100%;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-xs"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

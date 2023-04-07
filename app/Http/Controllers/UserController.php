@@ -44,7 +44,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message', 'Logged out');
+        return redirect('/');
     }
 
     // Show Login Form
@@ -64,7 +64,13 @@ class UserController extends Controller
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            return redirect('/dashboard')->with('message', 'Logged in');
+            if (auth()->user()->role == 0) {
+                return redirect('/dashboard')->with('message', 'Logged in');
+            } else if (auth()->user()->role == 1) {
+                return redirect('/staff/dashboard')->with('message', 'Logged in');
+            } else {
+                return redirect('/')->with('alert', 'No access');;
+            }
         }
 
         return back()->withErrors(['email' => 'Invalide Credentials'])->onlyInput('email');

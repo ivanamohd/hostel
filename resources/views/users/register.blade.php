@@ -36,8 +36,8 @@
                                             <option value="" disabled selected>Hostel</option>
                                             <option value="Kolej Tun Fatimah" {{ old('priority')=='Kolej Tun Fatimah'
                                                 ? 'selected' : '' }}>Kolej Tun Fatimah</option>
-                                            <option value="Kolej Tun Dr. Ismail" {{
-                                                old('priority')=='Kolej Tun Dr. Ismail' ? 'selected' : '' }}>Kolej Tun
+                                            <option value="Kolej Tun Dr Ismail" {{
+                                                old('priority')=='Kolej Tun Dr Ismail' ? 'selected' : '' }}>Kolej Tun
                                                 Dr Ismail
                                             </option>
                                             <option value="Kolej Tun Hussein Onn" {{
