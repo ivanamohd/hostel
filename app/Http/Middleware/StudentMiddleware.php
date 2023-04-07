@@ -21,7 +21,11 @@ class StudentMiddleware
             if (Auth::user()->role == '0') {
                 // Student
                 return $next($request);
+            } else {
+                return redirect('/')->with('message', 'No Access');
             }
+        } else {
+            return redirect('/')->with('message', 'No Access');
         }
 
         return $next($request);

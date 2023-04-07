@@ -12,7 +12,7 @@
                     <h6>All Students</h6>
                 </div>
                 <div>
-                    <a href="/staff/reports/create">
+                    <a href="/staff/students/create">
                         <button class="text-uppercase text-secondary text-xxs font-weight-bolder btn btn-sm fas fa-plus"
                             style="position:absolute; top:1rem; right:1rem"></button></a>
                 </div>
@@ -65,35 +65,34 @@
                                     </td>
 
                                     <td class="align-middle text-center">
-                                        <span
-                                            class="text-secondary text-xs font-weight-bold">{{$student->contact}}</span>
+                                        <span class="text-secondary text-xs font-weight-bold">{{$student->contact ?
+                                            $student->contact : 'N/A'}}</span>
                                     </td>
 
                                     <td class="align-middle text-center">
                                         <a href="/staff/students?block={{$student->block}}">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{$student->block}}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{$student->block ?
+                                                $student->email : 'N/A'}}</span>
                                         </a>
                                     </td>
 
                                     <td class="align-middle text-center">
                                         <a href="/staff/students?floor={{$student->floor}}">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{$student->floor}}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{$student->floor ?
+                                                $student->floor : 'N/A'}}</span>
                                         </a>
                                     </td>
 
                                     <td class="align-middle text-center">
                                         <a href="/staff/students?room={{$student->room}}">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{$student->room}}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{$student->room ?
+                                                $student->room : 'N/A'}}</span>
                                         </a>
                                     </td>
 
                                     <td class="align-middle">
-                                        <a href="/students/{{$student->id}}/edit"
-                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                            data-original-title="Edit user">
+                                        <a href="/staff/students/{{$student->id}}"
+                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
                                             View
                                         </a>
                                         {{-- <a href="/staff/reports/{{$report->id}}/"

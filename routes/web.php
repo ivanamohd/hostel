@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 
@@ -84,8 +85,32 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
     // All Students
     Route::get('/students', [StudentController::class, 'index']);
 
+    // Create New Student
+    Route::get('/students/create', [StudentController::class, 'create']);
+
+    // Store New Student
+    Route::post('/students', [StudentController::class, 'store']);
+
+    // Show Edit Student Form
+    Route::get('/students/{student}/edit', [StudentController::class, 'edit']);
+
+    // Update Student
+    Route::put('/students/{student}', [StudentController::class, 'update']);
+
+    // Show Single Student
+    Route::get('/students/{student}', [StudentController::class, 'show']);
+
     // Single Report
     Route::get('/reports/{report}', [ReportController::class, 'show']);
+
+    // Show Edit Profile
+    Route::get('/profile/{staff}/edit', [StaffController::class, 'edit']);
+
+    // Update Profile
+    Route::put('/profile/{staff}', [StaffController::class, 'update']);
+
+    // Show Profile
+    Route::get('/profile/{staff}', [StaffController::class, 'show']);
 });
 
 // Show Register Form

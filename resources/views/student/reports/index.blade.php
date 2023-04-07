@@ -153,7 +153,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($reports as $report)
+                                @foreach ($past as $report)
                                 <tr>
                                     <td>
                                         <div class="ps-3">
@@ -226,7 +226,7 @@
                     </div>
                     <!-- Card footer -->
                     <div class="card-footer pb-0">
-                        {{$reports->links()}}
+                        {{$past->links()}}
                     </div>
                 </div>
             </div>

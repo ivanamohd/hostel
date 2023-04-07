@@ -21,7 +21,11 @@ class StaffMiddleware
             if (Auth::user()->role == '1') {
                 // Staff
                 return $next($request);
+            } else {
+                return redirect('/')->with('message', 'No Access');
             }
+        } else {
+            return redirect('/')->with('message', 'No Access');
         }
 
         return $next($request);

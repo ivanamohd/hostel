@@ -15,12 +15,14 @@ class ReportController extends Controller
 
         if ($user->role == 1) {
             return view('staff.reports.index', [
-                'reports' => Report::latest()->filter(request(['status', 'priority', 'search']))->paginate(7)
+                'reports' => Report::latest()->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'active' => Report::latest()->where('status', '!=', 'Resolved')->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'past' => Report::latest()->where('status', '=', 'Resolved')->filter(request(['status', 'priority', 'search']))->paginate(7),
             ]);
         } else {
             return view('student.reports.index', [
                 'reports' => Report::latest()->where('user_id', $user->id)->filter(request(['status', 'search']))->paginate(7),
-                'past' => Report::latest()->where('status', '==', 'completed')->filter(request(['status', 'search']))->paginate(7)
+                'past' => Report::latest()->where([['user_id', $user->id], ['status', '=', 'Resolved']])->filter(request(['status', 'search']))->paginate(7)
             ]);
         }
     }
