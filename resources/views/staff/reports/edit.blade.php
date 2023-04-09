@@ -2,6 +2,7 @@
 
 @extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'Edit Ticket')
 @section('content')
 @include('layout.staff.topnav', ['title' => 'Edit Ticket'])
 
@@ -22,7 +23,7 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="category">Category:</label>
-                                <select name="category" class="form-control">
+                                <select name="category" class="form-control" disabled>
                                     <option value="Awam" {{ $report->category=='Awam' ? 'selected' : '' }}>Awam</option>
                                     <option value="Elektrik" {{ $report->category=='Elektrik' ? 'selected' : ''
                                         }}>Elektrik</option>
@@ -37,7 +38,7 @@
                             <div class="mb-3">
                                 <label for="description">Description:</label>
                                 <textarea class="form-control" name="description" maxlength="150"
-                                    placeholder="Description">{{$report->description}}</textarea>
+                                    placeholder="Description" disabled>{{$report->description}}</textarea>
                             </div>
                             @error('description')
                             <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>

@@ -1,5 +1,6 @@
 @extends('layout.layout-login', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'Sign In')
 @section('content')
 <div class="main-content mt-0">
     <section>
@@ -53,8 +54,7 @@
                     <div
                         class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
                         <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                            style="background-image: url({{ asset('images/utm2.jpg'); }});
-          background-size: cover;">
+                            style="background-image: url({{ asset('images/utm2.jpg'); }}); background-size: cover;">
                             <span class="mask bg-gradient-primary opacity-6"></span>
                         </div>
                     </div>

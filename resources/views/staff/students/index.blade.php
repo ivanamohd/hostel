@@ -73,7 +73,7 @@
                                     <td class="align-middle text-center">
                                         <a href="/staff/students?block={{$student->block}}">
                                             <span class="text-secondary text-xs font-weight-bold">{{$student->block ?
-                                                $student->email : 'N/A'}}</span>
+                                                $student->block : 'N/A'}}</span>
                                         </a>
                                     </td>
 

@@ -1,5 +1,6 @@
 @extends('layout.layout-login', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'Sign Up')
 @section('content')
 <div class="main-content mt-0">
     <section>
@@ -94,10 +95,6 @@
                                     <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
                                     @enderror
 
-                                    {{-- <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="rememberMe">
-                                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                                    </div> --}}
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign
                                             Up</button>
@@ -115,8 +112,7 @@
                     <div
                         class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
                         <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                            style="background-image: url({{ asset('images/utm2.jpg'); }});
-          background-size: cover;">
+                            style="background-image: url({{ asset('images/utm2.jpg'); }}); background-size: cover;">
                             <span class="mask bg-gradient-primary opacity-6"></span>
                         </div>
                     </div>

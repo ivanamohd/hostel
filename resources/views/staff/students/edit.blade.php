@@ -1,5 +1,6 @@
 @extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'Edit Student')
 @section('content')
 @include('layout.staff.topnav', ['title' => 'Edit Student'])
 

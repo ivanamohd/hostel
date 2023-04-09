@@ -1,8 +1,8 @@
-@extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
+@extends('layout.admin.layout-admin', ['class' => 'g-sidenav-show bg-gray-100'])
 
-@section('title', 'Add Student')
+@section('title', 'Add Staff')
 @section('content')
-@include('layout.staff.topnav', ['title' => 'Add Student'])
+@include('layout.admin.topnav', ['title' => 'Add Staff'])
 
 <main class="main-content mt-0">
     <div class="container pt-3">
@@ -10,13 +10,13 @@
             <div class="mx-auto">
                 <div class="card z-index-0" style="width:590px">
                     <div class="card-header text-center pt-4">
-                        <h5>Add New Student</h5>
+                        <h5>Add New Staff</h5>
                     </div>
-                    <a href="/staff/students">
+                    <a href="javascript:history.back()">
                         <button class="text-uppercase text-secondary ni ni-bold-left"
                             style="position:absolute; top:1.3rem; left:1rem; border:none; background:none; margin-top:10px; margin-right:10px"></button></a>
                     <div class="card-body">
-                        <form method="POST" action="/staff/students" enctype="multipart/form-data">
+                        <form method="POST" action="/admin/staff" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="name">Name:</label>
@@ -92,35 +92,6 @@
                             @error('hostel')
                             <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
                             @enderror
-
-                            <div style="float:left; display:flex;">
-                                <div class="mb-3 me-3">
-                                    <label for="email">Block:</label>
-                                    <input type="text" class="form-control" name="block" style="width:170px"
-                                        value="{{old('block')}}">
-                                </div>
-                                @error('block')
-                                <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
-                                @enderror
-
-                                <div class="mb-3 me-3">
-                                    <label for="floor">Floor:</label>
-                                    <input type="text" class="form-control" name="floor" style="width:170px"
-                                        value="{{old('floor')}}">
-                                </div>
-                                @error('floor')
-                                <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
-                                @enderror
-
-                                <div class="mb-3 me-3">
-                                    <label for="room">Room:</label>
-                                    <input type="text" class="form-control" name="room" style="width:170px"
-                                        value="{{old('room')}}">
-                                </div>
-                                @error('room')
-                                <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
-                                @enderror
-                            </div>
                             <div class="text-center">
                                 <button class="btn bg-gradient-dark w-100 my-4 mb-2">Create</button>
                             </div>

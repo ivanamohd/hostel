@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\User;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
+    // Dashboard
+    public function dashboard()
+    {
+        return view('student.dashboard', [
+            'user' => User::where('id', auth()->user()->id)->first(),
+            'report' => Report::where('user_id', auth()->user()->id)->latest('created_at')->first()
+        ]);
+    }
+
     // All Students
     public function index()
     {
@@ -17,7 +27,7 @@ class StudentController extends Controller
 
         if ($user->role == 1) {
             return view('staff.students.index', [
-                'students' => User::latest()->filter(request(['block', 'floor', 'room', 'search']))->paginate(7)
+                'students' => User::latest()->where([['role', '=', '0'], ['hostel', '=', $user->hostel]])->filter(request(['block', 'floor', 'room', 'search']))->paginate(7)
             ]);
         } else {
             abort(403, 'Unauthorized Action');

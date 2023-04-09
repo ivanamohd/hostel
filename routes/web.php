@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
@@ -23,9 +24,7 @@ Route::get('/', function () {
 
 Route::middleware('auth', 'isStudent')->group(function () {
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('student.dashboard');
-    });
+    Route::get('/dashboard', [StudentController::class, 'dashboard']);
 
     // All Reports
     Route::get('/reports', [ReportController::class, 'index']);
@@ -120,6 +119,29 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
 
     // Show Profile
     Route::get('/profile/{staff}', [StaffController::class, 'show']);
+});
+
+Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
+    // All Staff
+    Route::get('/staff', [AdminController::class, 'index']);
+
+    // Create Staff Form
+    Route::get('/staff/create', [AdminController::class, 'create']);
+
+    // Store New Staff
+    Route::post('/staff', [AdminController::class, 'store']);
+
+    // Show Edit Staff
+    Route::get('/staff/{staff}/edit', [AdminController::class, 'edit']);
+
+    // Update Staff
+    Route::put('/staff/{staff}', [AdminController::class, 'update']);
+
+    // Delete Staff
+    Route::delete('/staff/{staff}', [AdminController::class, 'destroy']);
+
+    // Show Staff
+    Route::get('/staff/{staff}', [AdminController::class, 'show']);
 });
 
 // Show Register Form

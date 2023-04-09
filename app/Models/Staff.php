@@ -19,6 +19,7 @@ class Staff extends Model
         'block',
         'floor',
         'room',
+        'role',
         'password',
     ];
 }

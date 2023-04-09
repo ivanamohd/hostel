@@ -68,6 +68,8 @@ class UserController extends Controller
                 return redirect('/dashboard')->with('message', 'Logged in');
             } else if (auth()->user()->role == 1) {
                 return redirect('/staff/dashboard')->with('message', 'Logged in');
+            } else if (auth()->user()->role == 2) {
+                return redirect('/admin/staff')->with('message', 'Logged in');
             } else {
                 return redirect('/')->with('alert', 'No access');;
             }

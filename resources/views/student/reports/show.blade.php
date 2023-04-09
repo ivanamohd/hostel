@@ -1,7 +1,6 @@
-{{-- <p>Test {{$report['category']}}</p> --}}
-
 @extends('layout.student.layout-student', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'View Ticket')
 @section('content')
 @include('layout.student.topnav', ['title' => 'View Ticket'])
 
@@ -161,6 +160,19 @@
                                 <span class="form-control badge badge-sm bg-gradient-success"
                                     style="width:170px">Resolved</span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div style="float:left; display:flex;">
+                            <div class="mb-3 me-3">
+                                <label>Created At:</label>
+                                <span class="form-control" style="width:262px">{{$report->created_at->format('d/m/Y
+                                    h:i:s')}}</span>
+                            </div>
+                            <div class="mb-3 me-3">
+                                <label>Updated At:</label>
+                                <span class="form-control" style="width:262px">{{$report->updated_at->format('d/m/Y
+                                    h:i:s')}}</span>
                             </div>
                         </div>
 

@@ -16,9 +16,9 @@ class ReportController extends Controller
 
         if ($user->role == 1) {
             return view('staff.reports.index', [
-                'reports' => Report::latest()->filter(request(['status', 'priority', 'search']))->paginate(7),
-                'active' => Report::latest()->where('status', '!=', 'Resolved')->filter(request(['status', 'priority', 'search']))->paginate(7),
-                'past' => Report::latest()->where('status', '=', 'Resolved')->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'reports' => Report::latest()->where('hostel', '=', $user->hostel)->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved']])->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'past' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved']])->filter(request(['status', 'priority', 'search']))->paginate(7),
             ]);
         } else {
             return view('student.reports.index', [
@@ -123,9 +123,16 @@ class ReportController extends Controller
     // Create Single Student Report
     public function create_student_report(Student $student)
     {
-        return view('staff.reports.create', [
-            'student' => $student,
-        ]);
+        if ($student->contact != NULL && $student->block != NULL && $student->floor != NULL && $student->room != NULL) {
+            return view('staff.reports.create', [
+                'student' => $student,
+            ]);
+        } else {
+            return redirect('/students' . '/' . $student->id . '/edit')->with('alert', 'Please complete student information before creating tickets');
+        }
+        // return view('staff.reports.create', [
+        //     'student' => $student,
+        // ]);
     }
 
     public function store_student_report(Request $request, Student $student)
@@ -173,8 +180,8 @@ class ReportController extends Controller
 
         if ($user->role == 1) {
             $formFields = $request->validate([
-                'category' => 'required',
-                'description' => 'required',
+                // 'category' => 'required',
+                // 'description' => 'required',
                 'priority' => 'required',
                 'status' => 'required',
             ]);
@@ -185,7 +192,7 @@ class ReportController extends Controller
 
             $report->update($formFields);
 
-            return redirect('/reports')->with('message', 'Ticket updated successfully!');
+            return redirect('/staff/reports')->with('message', 'Ticket updated successfully!');
         } else {
             // Make sure logged in user is owner
             if ($report->user_id != auth()->id()) {

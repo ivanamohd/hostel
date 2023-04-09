@@ -3465,6 +3465,12 @@ textarea.form-control-lg {
   border-color: #D3BF96;
 }
 
+.btn-blue {
+  color: #FFFF;
+  background-color: #1D3362;
+  border-color: #1D3362;
+}
+
 .btn-primary {
   color: #000;
   background-color: #fb6340;
