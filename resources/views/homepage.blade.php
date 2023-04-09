@@ -26,7 +26,7 @@
                         But be sure to check our FAQ section beforehand to view most frequently asked questions.
                     </h5>
                     <br>
-                    <a href="#paper-kit" class="btn btn-danger btn-round">Create An Account Today</a>
+                    <a href="/register" class="btn btn-danger btn-round">Create An Account Today</a>
                 </div>
             </div>
             <br />
@@ -86,7 +86,7 @@
     <div class="section section-dark text-center">
         <div class="container">
             <h2 class="title">Frequently Asked Questions</h2>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-4">
                     <div class="card card-profile card-plain">
                         <div class="card-avatar">
@@ -177,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- End FAQ -->
@@ -225,4 +225,11 @@
         </div>
     </div>
 </div>
+<script>
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+    }
+</script>
 @endsection

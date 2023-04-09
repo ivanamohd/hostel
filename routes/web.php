@@ -67,8 +67,14 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
     // Create Report Form
     Route::get('/reports/create', [ReportController::class, 'create']);
 
+    // Create Report For Single Student Form
+    Route::get('/reports/create/{student}', [ReportController::class, 'create_student_report']);
+
     // Store Report
-    Route::post('/reports', [ReportController::class, 'store']);
+    // Route::post('/reports', [ReportController::class, 'store']);
+
+    // Store Report
+    Route::post('/reports/by/{student}', [ReportController::class, 'store_student_report']);
 
     // Show Edit Form
     Route::get('/reports/{report}/edit', [ReportController::class, 'edit']);
@@ -99,6 +105,9 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
 
     // Show Single Student
     Route::get('/students/{student}', [StudentController::class, 'show']);
+
+    // Delete Report
+    Route::delete('/students/{student}', [StudentController::class, 'destroy']);
 
     // Single Report
     Route::get('/reports/{report}', [ReportController::class, 'show']);

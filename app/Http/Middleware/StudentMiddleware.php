@@ -22,10 +22,10 @@ class StudentMiddleware
                 // Student
                 return $next($request);
             } else {
-                return redirect('/')->with('message', 'No Access');
+                return redirect('/')->with('alert', 'No Access');
             }
         } else {
-            return redirect('/')->with('message', 'No Access');
+            return redirect('/')->with('alert', 'No Access');
         }
 
         return $next($request);

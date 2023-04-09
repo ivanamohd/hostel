@@ -27,13 +27,16 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="../index.html" class="nav-link"></i> About</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
-                        <a href="https://demos.creative-tim.com/paper-kit-2/docs/1.0/getting-started/introduction.html"
-                            target="_blank" class="nav-link"></i> Contact</a>
+                        <a href="https://studentaffairs.utm.my/residential-college-contact/" target="_blank"
+                            class="nav-link"></i> Contact</a>
                     </li>
+                    {{-- <li class="nav-item">
+                        <a href="#" target="_blank" class="nav-link"></i> FAQ</a>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="/register" class="nav-link btn btn-outline-default2 btn-round"></i> Get
                             Started</a>

@@ -2,6 +2,7 @@
 
 @extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'View Ticket')
 @section('content')
 @include('layout.staff.topnav', ['title' => 'View Ticket'])
 
@@ -13,7 +14,7 @@
                     <div class="card-header text-center pt-4">
                         <h5>Ticket ID: {{$report->id}}</h5>
                     </div>
-                    <a href="/reports"> <button class="text-uppercase text-secondary ni ni-bold-left"
+                    <a href="/staff/reports"> <button class="text-uppercase text-secondary ni ni-bold-left"
                             style="position:absolute; top:1.3rem; left:1rem; border:none; background:none; margin-top:10px; margin-right:10px"></button></a>
                     <a href="/staff/reports/{{$report->id}}/edit">
                         <button class="text-uppercase text-secondary text-s font-weight-bolder fa fa-pencil"
@@ -135,7 +136,8 @@
                             <form method="POST" action="/staff/reports/{{$report->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn bg-gradient-dark w-100 my-4 mb-2">Delete</button>
+                                <button onclick="return confirm('Are you sure?')"
+                                    class="btn bg-gradient-dark w-100 my-4 mb-2">Delete</button>
                             </form>
                         </div>
                     </div>

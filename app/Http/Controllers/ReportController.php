@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -53,7 +54,7 @@ class ReportController extends Controller
         $user = auth()->user();
 
         if ($user->role == 1) {
-            return view('staff.reports.create');
+            // return view('staff.reports.create');
         } else {
             if ($user->contact != NULL && $user->block != NULL && $user->floor != NULL && $user->room != NULL) {
                 return view('student.reports.create');
@@ -117,6 +118,40 @@ class ReportController extends Controller
 
             return redirect('/reports')->with('message', 'Ticket created successfully!');
         }
+    }
+
+    // Create Single Student Report
+    public function create_student_report(Student $student)
+    {
+        return view('staff.reports.create', [
+            'student' => $student,
+        ]);
+    }
+
+    public function store_student_report(Request $request, Student $student)
+    {
+        // dd($student);
+        $formFieldsStudent = $request->validate([
+            'category' => 'required',
+            'description' => 'required',
+            'priority' => 'required',
+        ]);
+
+        if ($request->hasFile('evidence')) {
+            $formFieldsStudent['evidence'] = $request->file('evidence')->store('evidence', 'public');
+        }
+
+        $formFieldsStudent['user_id'] = $student->id;
+        $formFieldsStudent['hostel'] = $student->hostel;
+        $formFieldsStudent['block'] = $student->block;
+        $formFieldsStudent['floor'] = $student->floor;
+        $formFieldsStudent['room'] = $student->room;
+        $formFieldsStudent['status'] = 'Pending';
+        $formFieldsStudent['role'] = 0;
+
+        Report::create($formFieldsStudent);
+
+        return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
     }
 
     // Show Edit Form
@@ -183,13 +218,20 @@ class ReportController extends Controller
     // Delete Report
     public function destroy(Report $report)
     {
-        // Make sure logged in user is owner
-        if ($report->user_id != auth()->id()) {
-            abort(403, 'Unauthorized Action');
-        }
+        $user = auth()->user();
 
-        $report->delete();
-        return redirect('/reports')->with('message', 'Ticket deleted!');
+        if ($user->role == 1) {
+            $report->delete();
+            return redirect('/staff/reports')->with('message', 'Ticket deleted!');
+        } else {
+            // Make sure logged in user is owner
+            if ($report->user_id != auth()->id()) {
+                abort(403, 'Unauthorized Action');
+            }
+
+            $report->delete();
+            return redirect('/reports')->with('message', 'Ticket deleted!');
+        }
     }
 
     // Manage Reports

@@ -1,7 +1,8 @@
 @extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'Reports')
 @section('content')
-@include('layout.staff.topnav', ['title' => 'Tables'])
+@include('layout.staff.topnav', ['title' => 'Reports'])
 <div class=" container-fluid py-4">
 
     {{-- Active Reports Table --}}
@@ -9,13 +10,13 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Active Reports</h6>
+                    <h6>Active Tickets</h6>
                 </div>
-                <div>
+                {{-- <div>
                     <a href="/staff/reports/create">
                         <button class="text-uppercase text-secondary text-xxs font-weight-bolder btn btn-sm fas fa-plus"
                             style="position:absolute; top:1rem; right:1rem"></button></a>
-                </div>
+                </div> --}}
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
@@ -130,12 +131,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Resolved Reports</h6>
-                </div>
-                <div>
-                    <a href="/staff/reports/create">
-                        <button class="text-uppercase text-secondary text-xxs font-weight-bolder btn btn-sm fas fa-plus"
-                            style="position:absolute; top:1rem; right:1rem"></button></a>
+                    <h6>Resolved Tickets</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -251,12 +247,7 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>All Reports</h6>
-                </div>
-                <div>
-                    <a href="/staff/reports/create">
-                        <button class="text-uppercase text-secondary text-xxs font-weight-bolder btn btn-sm fas fa-plus"
-                            style="position:absolute; top:1rem; right:1rem"></button></a>
+                    <h6>All Tickets</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">

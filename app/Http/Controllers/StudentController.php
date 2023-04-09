@@ -120,4 +120,18 @@ class StudentController extends Controller
 
         return redirect('/staff/students')->with('message', 'New student created successfully');
     }
+
+    // Delete Student
+    public function destroy(Student $student)
+    {
+        $user = auth()->user();
+
+        if ($user->role == 1) {
+            $student->delete();
+            return redirect('/staff/students')->with('message', 'Student deleted!');
+        } else {
+            $student->delete();
+            return redirect('/')->with('alert', 'Account deleted!');
+        }
+    }
 }

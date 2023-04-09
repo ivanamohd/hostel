@@ -1,5 +1,6 @@
 @extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'Create Ticket')
 @section('content')
 @include('layout.staff.topnav', ['title' => 'Add Ticket'])
 
@@ -11,8 +12,10 @@
                     <div class="card-header text-center pt-4">
                         <h5>New Ticket</h5>
                     </div>
+                    <a href="javascript:history.back()"> <button class="text-uppercase text-secondary ni ni-bold-left"
+                            style="position:absolute; top:1.3rem; left:1rem; border:none; background:none; margin-top:10px; margin-right:10px"></button></a>
                     <div class="card-body">
-                        <form method="POST" action="/staff/reports" enctype="multipart/form-data">
+                        <form method="POST" action="/staff/reports/by/{{$student->id}}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <select name="category" class="form-control" value="{{old('category')}}">
@@ -73,7 +76,7 @@
                                 </label>
                             </div> --}}
 
-                            <input type="hidden" name="status" value="Pending">
+                            {{-- <input type="hidden" name="status" value="Pending">
                             <input type="hidden" name="hostel" value="KTDI">
                             <input type="hidden" name="name" value="student2">
                             <input type="hidden" name="email" value="student2@email.com">
@@ -84,7 +87,7 @@
                             <input type="hidden" name="room" value="2333">
                             <input type="hidden" name="status" value="Pending">
                             <input type="hidden" name="role" value="0">
-                            <input type="hidden" name="user_id" value="7">
+                            <input type="hidden" name="user_id" value="7"> --}}
 
                             <div class="text-center">
                                 <button class="btn bg-gradient-dark w-100 my-4 mb-2">Create</button>
