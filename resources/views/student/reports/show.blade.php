@@ -206,10 +206,11 @@
                                     Conditions</a>
                             </label>
                         </div> --}}
-                        <form method="POST" action="/staff/reports/{{$report->id}}">
+                        <form method="POST" action="/reports/{{$report->id}}">
                             @csrf
                             @method('DELETE')
-                            <button class="btn bg-gradient-dark w-100 my-4 mb-2">Delete</button>
+                            <button onclick="return confirm('Are you sure?')"
+                                class="btn bg-gradient-dark w-100 my-4 mb-2">Delete</button>
                         </form>
 
                     </div>

@@ -13,9 +13,14 @@ class StudentController extends Controller
     // Dashboard
     public function dashboard()
     {
+        $user = auth()->user();
+
         return view('student.dashboard', [
-            'user' => User::where('id', auth()->user()->id)->first(),
-            'report' => Report::where('user_id', auth()->user()->id)->latest('created_at')->first()
+            'user' => User::where('id', $user->id)->first(),
+            'report' => Report::where([['user_id', auth()->user()->id], ['status', '!=', 'Resolved']])->latest('created_at')->first(),
+            'reports' => Report::latest()->where([['hostel', '=', $user->hostel], ['user_id', '=', $user->id]])->paginate(7),
+            'past' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved'], ['user_id', '=', $user->id]])->paginate(7),
+            'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved'], ['user_id', '=', $user->id]])->paginate(7),
         ]);
     }
 

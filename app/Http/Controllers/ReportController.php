@@ -23,7 +23,8 @@ class ReportController extends Controller
         } else {
             return view('student.reports.index', [
                 'reports' => Report::latest()->where('user_id', $user->id)->filter(request(['status', 'search']))->paginate(7),
-                'past' => Report::latest()->where([['user_id', $user->id], ['status', '=', 'Resolved']])->filter(request(['status', 'search']))->paginate(7)
+                'past' => Report::latest()->where([['user_id', $user->id], ['status', '=', 'Resolved']])->filter(request(['status', 'search']))->paginate(7),
+                'active' => Report::latest()->where([['status', '!=', 'Resolved'], ['user_id', '=', $user->id]])->paginate(7),
             ]);
         }
     }

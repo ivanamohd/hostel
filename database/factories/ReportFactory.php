@@ -14,16 +14,42 @@ class ReportFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
-            'category' => 'awam',
-            'description' => $this->faker->paragraph(1),
-            'priority' => 'High',
-            'status' => 'Resolved',
-            'hostel' => $this->faker->company(),
-            'block' => 'AA1',
-            'floor' => '1',
-            'room' => '1022',
-            'role' => '0',
+            [
+                'user_id' => 1,
+                'category' => 'Awam',
+                'description' => 'The door is broken',
+                'priority' => 'Unassigned',
+                'status' => 'Pending',
+                'hostel' => 'Kolej Tun Fatimah',
+                'block' => 'SA1',
+                'floor' => '1',
+                'room' => '1022',
+                'role' => '0',
+            ],
+            [
+                'user_id' => 2,
+                'category' => 'Elektrik',
+                'description' => 'The plug is not working',
+                'priority' => 'Unassigned',
+                'status' => 'Pending',
+                'hostel' => 'Kolej 10',
+                'block' => 'UB2',
+                'floor' => '4',
+                'room' => '4221',
+                'role' => '0',
+            ],
+            [
+                'user_id' => 2,
+                'category' => 'Elektrik',
+                'description' => 'The light is not working',
+                'priority' => 'Unassigned',
+                'status' => 'Pending',
+                'hostel' => 'Kolej 10',
+                'block' => 'UB2',
+                'floor' => '4',
+                'room' => '4221',
+                'role' => '0',
+            ]
         ];
     }
 }

@@ -1,7 +1,8 @@
 @extends('layout.student.layout-student', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@section('title', 'Reports')
 @section('content')
-@include('layout.student.topnav', ['title' => 'Tables'])
+@include('layout.student.topnav', ['title' => 'Reports'])
 <div class=" container-fluid py-4">
 
     {{-- Urgent Reports Table --}}
@@ -19,7 +20,7 @@
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
-                            @unless (count($reports) == 0)
+                            @unless (count($active) == 0)
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -43,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($reports as $report)
+                                @foreach ($active as $report)
                                 <tr>
                                     <td>
                                         <div class="ps-3">
@@ -88,7 +89,9 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{$report->created_at->format('d/m/Y
+                                            h:i:s')}}</span>
                                     </td>
                                     <td class="align-middle">
                                         <a href="/reports/{{$report->id}}"
@@ -112,7 +115,7 @@
                     </div>
                     <!-- Card footer -->
                     <div class="card-footer pb-0">
-                        {{$reports->links()}}
+                        {{$active->links()}}
                     </div>
                 </div>
             </div>
@@ -193,7 +196,9 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{$report->created_at->format('d/m/Y
+                                            h:i:s')}}</span>
                                     </td>
                                     <td class="align-middle">
                                         {{-- <a href="/reports/{{$report->id}}/edit"

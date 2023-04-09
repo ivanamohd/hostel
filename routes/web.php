@@ -56,9 +56,7 @@ Route::middleware('auth', 'isStudent')->group(function () {
 
 Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('staff.dashboard');
-    });
+    Route::get('/dashboard', [StaffController::class, 'dashboard']);
 
     // All Reports
     Route::get('/reports', [ReportController::class, 'index']);
