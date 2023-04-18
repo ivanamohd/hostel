@@ -48,7 +48,7 @@
                                     <button class="text-uppercase text-secondary ni ni-bold-right"
                                         style="position:absolute; top:2.5rem; right:0.5rem; border:none; background:none; margin-top:10px; margin-right:10px"></button></a>
                                 @else
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">You have no report</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">No reports available</p>
                                 @endif
                             </div>
                         </div>

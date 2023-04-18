@@ -25,6 +25,9 @@
                                         Elektrik</option>
                                     <option value="Perabot" {{ old('category')=='Perabot' ? 'selected' : '' }}>Perabot
                                     </option>
+                                    <option value="Lain-lain" {{ old('category')=='Lain-lain' ? 'selected' : '' }}>
+                                        Lain-lain
+                                    </option>
                                 </select>
                             </div>
                             @error('category')
@@ -61,33 +64,6 @@
                             @error('evidence')
                             <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
                             @enderror
-
-                            {{-- <label for="files">Select files:</label>
-                            <input type="file" id="files" name="files" multiple> --}}
-
-                            {{-- <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Category" aria-label="Category">
-                            </div> --}}
-                            {{-- <div class="form-check form-check-info text-start">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and
-                                        Conditions</a>
-                                </label>
-                            </div> --}}
-
-                            {{-- <input type="hidden" name="status" value="Pending">
-                            <input type="hidden" name="hostel" value="KTDI">
-                            <input type="hidden" name="name" value="student2">
-                            <input type="hidden" name="email" value="student2@email.com">
-                            <input type="hidden" name="contact" value="01212121">
-                            <input type="hidden" name="hostel" value="Kolej Rahman Putra">
-                            <input type="hidden" name="block" value="AA2">
-                            <input type="hidden" name="floor" value="2">
-                            <input type="hidden" name="room" value="2333">
-                            <input type="hidden" name="status" value="Pending">
-                            <input type="hidden" name="role" value="0">
-                            <input type="hidden" name="user_id" value="7"> --}}
 
                             <div class="text-center">
                                 <button class="btn bg-gradient-dark w-100 my-4 mb-2">Create</button>

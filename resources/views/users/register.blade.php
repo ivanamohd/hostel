@@ -35,42 +35,42 @@
                                     <div class="mb-3">
                                         <select name="hostel" class="form-control">
                                             <option value="" disabled selected>Hostel</option>
-                                            <option value="Kolej Tun Fatimah" {{ old('priority')=='Kolej Tun Fatimah'
+                                            <option value="Kolej Tun Fatimah" {{ old('hostel')=='Kolej Tun Fatimah'
                                                 ? 'selected' : '' }}>Kolej Tun Fatimah</option>
-                                            <option value="Kolej Tun Dr Ismail" {{
-                                                old('priority')=='Kolej Tun Dr Ismail' ? 'selected' : '' }}>Kolej Tun
+                                            <option value="Kolej Tun Dr Ismail" {{ old('hostel')=='Kolej Tun Dr Ismail'
+                                                ? 'selected' : '' }}>Kolej Tun
                                                 Dr Ismail
                                             </option>
                                             <option value="Kolej Tun Hussein Onn" {{
-                                                old('priority')=='Kolej Tun Hussein Onn' ? 'selected' : '' }}>Kolej Tun
+                                                old('hostel')=='Kolej Tun Hussein Onn' ? 'selected' : '' }}>Kolej Tun
                                                 Hussein Onn
                                             </option>
                                             <option value="Kolej Datin Seri Endon" {{
-                                                old('priority')=='Kolej Datin Seri Endon' ? 'selected' : '' }}>Kolej
+                                                old('hostel')=='Kolej Datin Seri Endon' ? 'selected' : '' }}>Kolej
                                                 Datin Seri Endon
                                             </option>
-                                            <option value="Kolej Perdana" {{ old('priority')=='Kolej Perdana'
-                                                ? 'selected' : '' }}>Kolej Perdana
+                                            <option value="Kolej Perdana" {{ old('hostel')=='Kolej Perdana' ? 'selected'
+                                                : '' }}>Kolej Perdana
                                             </option>
-                                            <option value="Kolej Tun Razak" {{ old('priority')=='Kolej Tun Razak'
+                                            <option value="Kolej Tun Razak" {{ old('hostel')=='Kolej Tun Razak'
                                                 ? 'selected' : '' }}>Kolej Tun Razak
                                             </option>
-                                            <option value="Kolej Rahman Putra" {{ old('priority')=='Kolej Rahman Putra'
+                                            <option value="Kolej Rahman Putra" {{ old('hostel')=='Kolej Rahman Putra'
                                                 ? 'selected' : '' }}>Kolej Rahman Putra
                                             </option>
                                             <option value="Kolej Tuanku Canselor" {{
-                                                old('priority')=='Kolej Tuanku Canselor' ? 'selected' : '' }}>Kolej
+                                                old('hostel')=='Kolej Tuanku Canselor' ? 'selected' : '' }}>Kolej
                                                 Tuanku Canselor
                                             </option>
                                             <option value="Kolej Dato Onn Jaafar" {{
-                                                old('priority')=='Kolej Dato Onn Jaafar' ? 'selected' : '' }}>Kolej Dato
+                                                old('hostel')=='Kolej Dato Onn Jaafar' ? 'selected' : '' }}>Kolej Dato
                                                 Onn Jaafar
                                             </option>
-                                            <option value="Kolej 9" {{ old('priority')=='Kolej 9' ? 'selected' : '' }}>
+                                            <option value="Kolej 9" {{ old('hostel')=='Kolej 9' ? 'selected' : '' }}>
                                                 Kolej 9
                                             </option>
-                                            <option value="Kolej 10" {{ old('priority')=='Kolej 10' ? 'selected' : ''
-                                                }}>Kolej 10
+                                            <option value="Kolej 10" {{ old('hostel')=='Kolej 10' ? 'selected' : '' }}>
+                                                Kolej 10
                                             </option>
                                         </select>
                                     </div>
