@@ -26,19 +26,19 @@
                         </div>
                         <div class="mb-3">
                             <label>Name:</label>
-                            <span class="form-control">{{$student->name}}</span>
+                            <span class="form-control">{{$report->name}}</span>
                         </div>
 
                         <div style="float:left; display:flex;">
                             <div class="mb-3 me-3">
                                 <label for="email">Email:</label>
-                                <span class="form-control" name="email" style="width:262px">{{$student->email}}</span>
+                                <span class="form-control" name="email" style="width:262px">{{$report->email}}</span>
                             </div>
 
                             <div class="mb-3 me-3">
                                 <label for="contact">Contact:</label>
-                                <span class="form-control" name="contact" style="width:262px">{{$student->contact ?
-                                    $student->contact :
+                                <span class="form-control" name="contact" style="width:262px">{{$report->contact ?
+                                    $report->contact :
                                     'N/A' }}</span>
                             </div>
                         </div>
@@ -46,76 +46,28 @@
                         <div style="float:left; display:flex;">
                             <div class="mb-3 me-3">
                                 <label for="email">Block:</label>
-                                <span type="text" class="form-control" name="block"
-                                    style="width:170px">{{$student->block ?
-                                    $student->block :
+                                <span type="text" class="form-control" name="block" style="width:170px">{{$report->block
+                                    ?
+                                    $report->block :
                                     'N/A' }}</span>
                             </div>
 
                             <div class="mb-3 me-3">
                                 <label for="floor">Floor:</label>
-                                <span type="text" class="form-control" name="floor"
-                                    style="width:170px">{{$student->floor ?
-                                    $student->floor :
+                                <span type="text" class="form-control" name="floor" style="width:170px">{{$report->floor
+                                    ?
+                                    $report->floor :
                                     'N/A' }}</span>
                             </div>
 
                             <div class="mb-3 me-3">
                                 <label for="room">Room:</label>
-                                <span type="text" class="form-control" name="room" style="width:170px">{{$student->room
+                                <span type="text" class="form-control" name="room" style="width:170px">{{$report->room
                                     ?
-                                    $student->room :
+                                    $report->room :
                                     'N/A' }}</span>
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="priority">Priority:</label>
-                            <select name="priority" class="form-control">
-                                <option value="" disabled selected>Priority</option>
-                                <option value="High" {{ old('priority')=='High' ? 'selected' : '' }}>High</option>
-                                <option value="Medium" {{ old('priority')=='Medium' ? 'selected' : '' }}>Medium
-                                </option>
-                                <option value="Low" {{ old('priority')=='Low' ? 'selected' : '' }}>Low</option>
-                            </select>
-                        </div>
-
-                        {{-- <div class="mb-3">
-                            <label for="hostel">Hostel:</label>
-                            <select name="hostel" class="form-control" disabled>
-                                <option value="Kolej Tun Fatimah" {{ $report->hostel=='Kolej Tun Fatimah' ?
-                                    'selected' : '' }}>Kolej Tun Fatimah</option>
-                                <option value="Kolej Tun Dr Ismail" {{ $report->hostel=='Kolej Tun Dr Ismail' ?
-                                    'selected' : '' }}>Kolej Tun Dr Ismail
-                                </option>
-                                <option value="Kolej Tun Hussein Onn" {{ $report->hostel=='Kolej Tun Hussein Onn' ?
-                                    'selected' : '' }}>Kolej Tun Hussein Onn
-                                </option>
-                                <option value="Kolej Datin Seri Endon" {{ $report->hostel=='Kolej Datin Seri Endon'
-                                    ? 'selected' : '' }}>Kolej Datin Seri Endon
-                                </option>
-                                <option value="Kolej Perdana" {{ $report->hostel=='Kolej Perdana' ? 'selected' : ''
-                                    }}>Kolej Perdana
-                                </option>
-                                <option value="Kolej Tun Razak" {{ $report->hostel=='Kolej Tun Razak' ? 'selected'
-                                    : '' }}>Kolej Tun Razak
-                                </option>
-                                <option value="Kolej Rahman Putra" {{ $report->hostel=='Kolej Rahman Putra' ?
-                                    'selected' : '' }}>Kolej Rahman Putra
-                                </option>
-                                <option value="Kolej Tuanku Canselor" {{ $report->hostel=='Kolej Tuanku Canselor' ?
-                                    'selected' : ''
-                                    }}>Kolej Tuanku Canselor</option>
-                                <option value="Kolej Dato Onn Jaafar" {{ $report->hostel=='Kolej Dato Onn Jaafar' ?
-                                    'selected' : '' }}>Kolej Dato Onn Jaafar
-                                </option>
-                                <option value="Kolej 9" {{ $report->hostel=='Kolej 9' ? 'selected' : '' }}>Kolej 9
-                                </option>
-                                <option value="Kolej 10" {{ $report->hostel=='Kolej 10' ? 'selected' : '' }}>Kolej
-                                    10
-                                </option>
-                            </select>
-                        </div> --}}
 
                         <div style="float:left; display:flex">
                             <div class="mb-3">
@@ -138,7 +90,7 @@
                                 @endif
                             </div>
 
-                            <div class="mb-3" style="margin-right: 11rem">
+                            <div class="mb-3">
                                 <label>Status:</label>
                                 @if($report->status == 'Pending')
                                 <span class="form-control badge badge-sm bg-gradient-faded-dark"
@@ -160,6 +112,11 @@
                                 <span class="form-control badge badge-sm bg-gradient-success"
                                     style="width:170px">Resolved</span>
                                 @endif
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Person in Charge:</label>
+                                <span class="form-control" style="width:170px">{{$report->assign}}</span>
                             </div>
                         </div>
 

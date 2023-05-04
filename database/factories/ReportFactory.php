@@ -24,7 +24,7 @@ class ReportFactory extends Factory
                 'block' => 'SA1',
                 'floor' => '1',
                 'room' => '1022',
-                'role' => '0',
+                'assign' => 'Unassigned',
             ],
             [
                 'user_id' => 2,
@@ -36,7 +36,7 @@ class ReportFactory extends Factory
                 'block' => 'UB2',
                 'floor' => '4',
                 'room' => '4221',
-                'role' => '0',
+                'assign' => 'Unassigned',
             ],
             [
                 'user_id' => 2,
@@ -48,7 +48,7 @@ class ReportFactory extends Factory
                 'block' => 'UB2',
                 'floor' => '4',
                 'room' => '4221',
-                'role' => '0',
+                'assign' => 'Unassigned',
             ]
         ];
     }

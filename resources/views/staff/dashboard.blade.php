@@ -106,21 +106,23 @@
             <div class="card ">
                 <div class="card-header pb-0 p-3">
                     <div class="d-flex justify-content-between">
-                        <h6 class="mb-2">Urgent Tickets</h6>
+                        <h6 class="mb-2">Unassigned Tickets</h6>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center ">
-                        @unless (count($urgent) == 0)
+                        @unless (count($open) == 0)
                         <thead>
                             <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Report ID</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                    Reporter</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                     Description</th>
-                                <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder
+                                {{-- <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder
                                         opacity-7">
-                                    Status</th>
+                                    Status</th> --}}
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Date</th>
@@ -128,12 +130,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($urgent as $report)
+                            @foreach ($open as $report)
                             <tr>
                                 <td>
                                     <div class="ps-3">
                                         <span class="text-secondary text-xs font-weight-bold">{{$report->id}}</span>
                                     </div>
+                                </td>
+                                <td>
+                                    <a href="/staff/students/{{$report->user_id}}">
+                                        <p class="text-xs font-weight-bold mb-0">
+                                            {{$report->name}}</p>
+                                    </a>
+                                    <p class="text-xs text-secondary mb-0">
+                                        {{$report->block}} - {{$report->room}}</p>
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">
@@ -142,7 +152,7 @@
                                         Str::limit($report->description, '50', '...') }}</p>
                                 </td>
 
-                                <td class="align-middle text-center text-sm">
+                                {{-- <td class="align-middle text-center text-sm">
                                     <a href="/staff/reports/?status={{$report->status}}">
                                         @if($report->status == 'Pending')
                                         <span class="badge badge-sm bg-gradient-faded-dark"
@@ -161,10 +171,11 @@
                                             style="width:85px">{{$report->status}}</span>
                                         @endif
                                     </a>
-                                </td>
+                                </td> --}}
                                 <td class="align-middle text-center">
                                     <span
-                                        class="text-secondary text-xs font-weight-bold">{{$report->created_at->format('d/m/Y')}}</span>
+                                        class="text-secondary text-xs font-weight-bold">{{$report->created_at->format('d/m/Y
+                                        h:i:s')}}</span>
                                 </td>
                                 <td class="align-middle">
                                     <a href="/staff/reports/{{$report->id}}"
@@ -183,7 +194,7 @@
                 </div>
                 <!-- Card footer -->
                 <div class="card-footer pb-0">
-                    {{$urgent->links()}}
+                    {{$open->links()}}
                 </div>
             </div>
         </div>

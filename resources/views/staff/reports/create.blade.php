@@ -57,6 +57,21 @@
                             <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
                             @enderror
 
+                            <label for="assign">Assign To:</label>
+                            <div class="mb-3">
+                                <select name="assign" class="form-control">
+                                    <option value="Unassigned" {{ old('assign')=='Unassigned' ? 'selected' : '' }}>
+                                        Unassigned</option>
+                                    @foreach($staff as $staf)
+                                    <option value="{{ $staf->name }}" {{$staf->name == $staf->name ?
+                                        'selected' : ''}}>{{ $staf->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('assign')
+                            <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                            @enderror
+
                             <label for="evidence">Evidence:</label>
                             <div class="mb-3">
                                 <input type="file" class="form-control" name="evidence">

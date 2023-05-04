@@ -45,6 +45,25 @@
                             @enderror
 
                             <div class="mb-3">
+                                <label for="assign">Assigned To:</label>
+                                <select name="assign" class="form-control">
+                                    <option value="Unassigned" {{ old('assign')=='Unassigned' ? 'selected' : '' }}>
+                                        Unassigned</option>
+                                    @foreach($staff as $staf)
+                                    <option value="{{ $staf->name }}" {{$staf->name == $staf->name ?
+                                        'selected' : ''}}>{{ $staf->name}}</option>
+                                    @endforeach
+                                    <option hidden value="{{ $report->assign }}" {{$report->assign ==
+                                        $report->assign
+                                        ?
+                                        'selected' : ''}}>{{ $report->assign}}</option>
+                                </select>
+                            </div>
+                            @error('assign')
+                            <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                            @enderror
+
+                            <div class="mb-3">
                                 <label for="priority">Priority:</label>
                                 <select name="priority" class="form-control">
                                     <option value="Unassigned" {{ $report->priority=='Unassigned' ? 'selected' : ''
@@ -78,37 +97,6 @@
                                     </option>
                                 </select>
                             </div>
-
-                            {{-- <input type="hidden" name="hostel" value="KTDI"> --}}
-                            {{-- <input type="hidden" name="contact" value="{{$student->contact}}">
-                            <input type="hidden" name="hostel" value="{{$report->hostel}}">
-                            <input type="hidden" name="block" value="{{$student->block}}">
-                            <input type="hidden" name="floor" value="{{$student->floor}}">
-                            <input type="hidden" name="room" value="{{$student->room}}">
-                            <input type="hidden" name="status" value="{{$report->status}}">
-                            <input type="hidden" name="role" value="{{$student->role}}"> --}}
-
-                            {{-- <input type="hidden" name="hostel" value="KTDI">
-                            <input type="hidden" name="name" value="student2">
-                            <input type="hidden" name="email" value="student2@email.com">
-                            <input type="hidden" name="contact" value="01212121">
-                            <input type="hidden" name="hostel" value="Kolej Rahman Putra">
-                            <input type="hidden" name="block" value="AA2">
-                            <input type="hidden" name="floor" value="2">
-                            <input type="hidden" name="room" value="2333">
-                            <input type="hidden" name="role" value="0">
-                            <input type="hidden" name="user_id" value="7"> --}}
-
-                            {{-- <input type="hidden" name="hostel" value="{{$report->hostel}}">
-                            <input type="hidden" name="name" value="{{$student->name}}">
-                            <input type="hidden" name="email" value="{{$student->email}}">
-                            <input type="hidden" name="contact" value="{{$report->contact}}">
-                            <input type="hidden" name="block" value="{{$student->block}}">
-                            <input type="hidden" name="floor" value="{{$student->floor}}">
-                            <input type="hidden" name="room" value="{{$student->room}}">
-                            <input type="hidden" name="role" value="{{$student->role}}">
-                            <input type="hidden" name="user_id" value="{{$student->id}}"> --}}
-
 
                             <div class="text-center">
                                 <button class="btn bg-gradient-dark w-100 my-4 mb-2">Update</button>

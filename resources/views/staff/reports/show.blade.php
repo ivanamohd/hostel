@@ -13,6 +13,12 @@
                 <div class="card z-index-0" style="width:590px">
                     <div class="card-header text-center pt-4">
                         <h5>Ticket ID: {{$report->id}}</h5>
+                        @if($exist)
+
+                        @else
+                        <span class="form-control badge badge-sm bg-gradient-faded-danger" style="width:160px">Student
+                            Deleted</span>
+                        @endif
                     </div>
                     <a href="/staff/reports"> <button class="text-uppercase text-secondary ni ni-bold-left"
                             style="position:absolute; top:1.3rem; left:1rem; border:none; background:none; margin-top:10px; margin-right:10px"></button></a>
@@ -30,30 +36,30 @@
                         </div>
                         <div class="mb-3">
                             <label>Name:</label>
-                            <span class="form-control">{{$student->name}}</span>
+                            <span class="form-control">{{$report->name}}</span>
                         </div>
                         <div style="float:left; display:flex;">
                             <div class="mb-3 me-3">
                                 <label>Email:</label>
-                                <span class="form-control" style="width:262px">{{$student->email}}</span>
+                                <span class="form-control" style="width:262px">{{$report->email}}</span>
                             </div>
                             <div class="mb-3 me-3">
                                 <label>Contact:</label>
-                                <span class="form-control" style="width:262px">{{$student->contact}}</span>
+                                <span class="form-control" style="width:262px">{{$report->contact}}</span>
                             </div>
                         </div>
                         <div style="float:left; display:flex;">
                             <div class="mb-3 me-3">
                                 <label>Block:</label>
-                                <span class="form-control" style="width:170px">{{$student->block}}</span>
+                                <span class="form-control" style="width:170px">{{$report->block}}</span>
                             </div>
                             <div class="mb-3 me-3">
                                 <label>Floor:</label>
-                                <span class="form-control" style="width:170px">{{$student->floor}}</span>
+                                <span class="form-control" style="width:170px">{{$report->floor}}</span>
                             </div>
                             <div class="mb-3 me-3">
                                 <label>Room:</label>
-                                <span class="form-control" style="width:170px">{{$student->room}}</span>
+                                <span class="form-control" style="width:170px">{{$report->room}}</span>
                             </div>
                         </div>
 
@@ -78,7 +84,7 @@
                                 @endif
                             </div>
 
-                            <div class="mb-3" style="margin-right: 11rem">
+                            <div class="mb-3">
                                 <label>Status:</label>
                                 @if($report->status == 'Pending')
                                 <span class="form-control badge badge-sm bg-gradient-faded-dark"
@@ -100,6 +106,11 @@
                                 <span class="form-control badge badge-sm bg-gradient-success"
                                     style="width:170px">Resolved</span>
                                 @endif
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Assigned To:</label>
+                                <span class="form-control" style="width:170px">{{$report->assign}}</span>
                             </div>
                         </div>
 

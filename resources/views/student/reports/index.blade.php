@@ -201,25 +201,10 @@
                                             h:i:s')}}</span>
                                     </td>
                                     <td class="align-middle">
-                                        {{-- <a href="/reports/{{$report->id}}/edit"
-                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                            data-original-title="Edit user">
-                                            Edit
-                                        </a> --}}
-                                        <a href="/reports/{{$report->id}}/edit"
+                                        <a href="/reports/{{$report->id}}"
                                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
-                                            <i class="fa fa-eye"></i>
+                                            View
                                         </a>
-                                        <a href="/reports/{{$report->id}}/edit"
-                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <form method="POST" action="/reports/{{$report->id}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="fa fa-trash text-secondary font-weight-bold text-xs bg-white"
-                                                style="border: none"></button>
-                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

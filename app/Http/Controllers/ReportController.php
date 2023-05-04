@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Report;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -17,8 +18,9 @@ class ReportController extends Controller
         if ($user->role == 1) {
             return view('staff.reports.index', [
                 'reports' => Report::latest()->where('hostel', '=', $user->hostel)->filter(request(['status', 'priority', 'search']))->paginate(7),
-                'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved']])->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved'], ['assign', '!=', 'Unassigned']])->filter(request(['status', 'priority', 'search']))->paginate(7),
                 'past' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved']])->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'assign' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved'], ['assign', '=', $user->name]])->filter(request(['status', 'priority', 'search']))->paginate(7),
             ]);
         } else {
             return view('student.reports.index', [
@@ -34,17 +36,19 @@ class ReportController extends Controller
     {
         $user = auth()->user();
 
+        // 'student' => $report->join('users', 'users.id', '=', 'reports.user_id')->select('users.name', 'users.email', 'users.contact', 'users.block', 'users.floor', 'users.room')
+        //             ->where('users.id', $report->user_id)->first()
+
+        $exist = User::where('id', '=', $report->user_id)->first();
+
         if ($user->role == 1) {
             return view('staff.reports.show', [
                 'report' => $report,
-                'student' => $report->join('users', 'users.id', '=', 'reports.user_id')->select('users.name', 'users.email', 'users.contact', 'users.block', 'users.floor', 'users.room')
-                    ->where('users.id', $report->user_id)->first()
+                'exist' => $exist,
             ]);
         } else {
             return view('student.reports.show', [
                 'report' => $report,
-                'student' => $report->join('users', 'users.id', '=', 'reports.user_id')->select('users.name', 'users.email', 'users.contact', 'users.block', 'users.floor', 'users.room')
-                    ->where('users.id', $report->user_id)->first()
             ]);
         }
     }
@@ -73,28 +77,32 @@ class ReportController extends Controller
         $user = auth()->user();
 
         if ($user->role == 1) {
-            $formFields = $request->validate([
-                'category' => 'required',
-                'description' => 'required',
-                'status' => 'required',
-                'contact' => 'required',
-                'hostel' => 'required',
-                'block' => 'required',
-                'floor' => 'required',
-                'room' => 'required',
-                'role' => 'required',
-                'evidence' => 'required',
-            ]);
+            //     $formFields = $request->validate([
+            //         'category' => 'required',
+            //         'description' => 'required',
+            //         'name' => 'required',
+            //         'email' => 'required',
+            //         'contact' => 'required',
+            //         'status' => 'required',
+            //         'contact' => 'required',
+            //         'hostel' => 'required',
+            //         'block' => 'required',
+            //         'floor' => 'required',
+            //         'room' => 'required',
+            //         'assign' => 'required',
+            //         'evidence' => 'required',
+            //     ]);
 
-            if ($request->hasFile('evidence')) {
-                $formFields['evidence'] = $request->file('evidence')->store('evidence', 'public');
-            }
+            //     if ($request->hasFile('evidence')) {
+            //         $formFields['evidence'] = $request->file('evidence')->store('evidence', 'public');
+            //     }
 
-            $formFields['user_id'] = auth()->id();
+            //     $formFields['user_id'] = auth()->id();
+            //     $formFields['assign'] = 'Unassigned';
 
-            Report::create($formFields);
+            //     Report::create($formFields);
 
-            return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
+            //     return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
         } else {
             // dd(auth()->user()->hostel);
             $formFieldsStudent = $request->validate([
@@ -107,13 +115,16 @@ class ReportController extends Controller
             }
 
             $formFieldsStudent['user_id'] = auth()->id();
+            $formFieldsStudent['name'] = auth()->user()->name;
+            $formFieldsStudent['email'] = auth()->user()->email;
+            $formFieldsStudent['contact'] = auth()->user()->contact;
             $formFieldsStudent['hostel'] = auth()->user()->hostel;
             $formFieldsStudent['block'] = auth()->user()->block;
             $formFieldsStudent['floor'] = auth()->user()->floor;
             $formFieldsStudent['room'] = auth()->user()->room;
             $formFieldsStudent['status'] = 'Pending';
             $formFieldsStudent['priority'] = 'Unassigned';
-            $formFieldsStudent['role'] = 0;
+            $formFieldsStudent['assign'] = 'Unassigned';
 
             Report::create($formFieldsStudent);
 
@@ -124,16 +135,16 @@ class ReportController extends Controller
     // Create Single Student Report
     public function create_student_report(Student $student)
     {
+        $user = auth()->user();
+
         if ($student->contact != NULL && $student->block != NULL && $student->floor != NULL && $student->room != NULL) {
             return view('staff.reports.create', [
                 'student' => $student,
+                'staff' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1']])->get(),
             ]);
         } else {
-            return redirect('/students' . '/' . $student->id . '/edit')->with('alert', 'Please complete student information before creating tickets');
+            return redirect('/staff/students' . '/' . $student->id . '/edit')->with('alert', 'Please complete student information before creating tickets');
         }
-        // return view('staff.reports.create', [
-        //     'student' => $student,
-        // ]);
     }
 
     public function store_student_report(Request $request, Student $student)
@@ -143,6 +154,7 @@ class ReportController extends Controller
             'category' => 'required',
             'description' => 'required',
             'priority' => 'required',
+            'assign' => 'required',
         ]);
 
         if ($request->hasFile('evidence')) {
@@ -150,12 +162,14 @@ class ReportController extends Controller
         }
 
         $formFieldsStudent['user_id'] = $student->id;
+        $formFieldsStudent['name'] = $student->name;
+        $formFieldsStudent['email'] = $student->email;
+        $formFieldsStudent['contact'] = $student->contact;
         $formFieldsStudent['hostel'] = $student->hostel;
         $formFieldsStudent['block'] = $student->block;
         $formFieldsStudent['floor'] = $student->floor;
         $formFieldsStudent['room'] = $student->room;
         $formFieldsStudent['status'] = 'Pending';
-        $formFieldsStudent['role'] = 0;
 
         Report::create($formFieldsStudent);
 
@@ -165,11 +179,12 @@ class ReportController extends Controller
     // Show Edit Form
     public function edit(Report $report)
     {
+        $user = auth()->user();
+
         // dd($report->category);
         return view('staff.reports.edit', [
             'report' => $report,
-            'student' => $report->join('users', 'users.id', '=', 'reports.user_id')->select('users.name', 'users.email', 'users.contact', 'users.block', 'users.floor', 'users.room')
-                ->where('users.id', $report->user_id)->first()
+            'staff' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1']])->get(),
         ]);
     }
 
@@ -181,10 +196,9 @@ class ReportController extends Controller
 
         if ($user->role == 1) {
             $formFields = $request->validate([
-                // 'category' => 'required',
-                // 'description' => 'required',
                 'priority' => 'required',
                 'status' => 'required',
+                'assign' => 'required',
             ]);
 
             if ($request->hasFile('evidence')) {
@@ -210,7 +224,7 @@ class ReportController extends Controller
                 'block' => 'required',
                 'floor' => 'required',
                 'room' => 'required',
-                'role' => 'required',
+                'assign' => 'required',
             ]);
 
             if ($request->hasFile('evidence')) {

@@ -16,6 +16,7 @@ class StaffController extends Controller
         return view('staff.dashboard', [
             'user' => User::where('id', $user->id)->first(),
             'urgent' => Report::latest()->where([['hostel', '=', $user->hostel], ['priority', '=', 'High'], ['status', '!=', 'Resolved']])->paginate(7),
+            'open' => Report::latest()->where([['hostel', '=', $user->hostel], ['assign', '=', 'Unassigned'], ['status', '!=', 'Resolved']])->paginate(7),
             'reports' => Report::latest()->where('hostel', '=', $user->hostel)->paginate(7),
             'past' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved']])->paginate(7),
             'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved']])->paginate(7),

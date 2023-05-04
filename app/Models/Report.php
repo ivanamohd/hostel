@@ -9,7 +9,7 @@ class Report extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'category', 'description', 'priority', 'status', 'hostel', 'evidence', 'contact', 'block', 'floor', 'room', 'role'];
+    protected $fillable = ['user_id', 'name', 'email', 'contact', 'category', 'description', 'priority', 'status', 'assign', 'hostel', 'evidence', 'contact', 'block', 'floor', 'room', 'role'];
 
     public function scopeFilter($query, array $filters)
     {
