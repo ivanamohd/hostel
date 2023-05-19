@@ -58,6 +58,18 @@
                             @enderror
 
                             <label for="assign">Assign To:</label>
+                            @if($user->head == '1')
+                            <div class="mb-3">
+                                <select name="assign" class="form-control">
+                                    <option value="Unassigned" {{ old('assign')=='Unassigned' ? 'selected' : '' }}>
+                                        Unassigned</option>
+                                    @foreach($staffbyhead as $staf)
+                                    <option value="{{ $staf->name }}" {{$staf->name == $staf->name ?
+                                        'selected' : ''}}>{{ $staf->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @else
                             <div class="mb-3">
                                 <select name="assign" class="form-control">
                                     <option value="Unassigned" {{ old('assign')=='Unassigned' ? 'selected' : '' }}>
@@ -68,6 +80,7 @@
                                     @endforeach
                                 </select>
                             </div>
+                            @endif
                             @error('assign')
                             <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
                             @enderror

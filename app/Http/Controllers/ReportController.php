@@ -20,7 +20,10 @@ class ReportController extends Controller
                 'reports' => Report::latest()->where('hostel', '=', $user->hostel)->filter(request(['status', 'priority', 'search']))->paginate(7),
                 'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved'], ['assign', '!=', 'Unassigned']])->filter(request(['status', 'priority', 'search']))->paginate(7),
                 'past' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved']])->filter(request(['status', 'priority', 'search']))->paginate(7),
+
                 'assign' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved'], ['assign', '=', $user->name]])->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'assign_resolved' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved'], ['assign', '=', $user->name]])->filter(request(['status', 'priority', 'search']))->paginate(7),
+                'user' => $user,
             ]);
         } else {
             return view('student.reports.index', [
@@ -140,7 +143,9 @@ class ReportController extends Controller
         if ($student->contact != NULL && $student->block != NULL && $student->floor != NULL && $student->room != NULL) {
             return view('staff.reports.create', [
                 'student' => $student,
-                'staff' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1']])->get(),
+                'staff' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1'], ['id', '=', $user->id]])->get(),
+                'staffbyhead' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1']])->get(),
+                'user' => $user,
             ]);
         } else {
             return redirect('/staff/students' . '/' . $student->id . '/edit')->with('alert', 'Please complete student information before creating tickets');
@@ -184,7 +189,9 @@ class ReportController extends Controller
         // dd($report->category);
         return view('staff.reports.edit', [
             'report' => $report,
-            'staff' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1']])->get(),
+            'staff' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1'], ['id', '=', $user->id]])->get(),
+            'staffbyhead' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1']])->get(),
+            'user' => $user,
         ]);
     }
 

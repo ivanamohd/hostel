@@ -37,6 +37,9 @@
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Hostel</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Head</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                             </thead>
@@ -65,6 +68,14 @@
 
                                     <td class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">{{$staff->hostel}}</span>
+                                    </td>
+
+                                    <td class="align-middle text-center">
+                                        @if($staff->head == "1")
+                                        <span class="text-secondary text-xs font-weight-bold">Yes</span>
+                                        @else
+                                        <span class="text-secondary text-xs font-weight-bold">No</span>
+                                        @endif
                                     </td>
 
                                     <td class="align-middle">

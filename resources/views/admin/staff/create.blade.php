@@ -47,51 +47,66 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
-                                <select name="hostel" class="form-control">
-                                    <option value="" disabled selected>Hostel</option>
-                                    <option value="Kolej Tun Fatimah" {{ old('priority')=='Kolej Tun Fatimah'
-                                        ? 'selected' : '' }}>Kolej Tun Fatimah</option>
-                                    <option value="Kolej Tun Dr Ismail" {{ old('priority')=='Kolej Tun Dr Ismail'
-                                        ? 'selected' : '' }}>Kolej Tun
-                                        Dr Ismail
-                                    </option>
-                                    <option value="Kolej Tun Hussein Onn" {{ old('priority')=='Kolej Tun Hussein Onn'
-                                        ? 'selected' : '' }}>Kolej Tun
-                                        Hussein Onn
-                                    </option>
-                                    <option value="Kolej Datin Seri Endon" {{ old('priority')=='Kolej Datin Seri Endon'
-                                        ? 'selected' : '' }}>Kolej
-                                        Datin Seri Endon
-                                    </option>
-                                    <option value="Kolej Perdana" {{ old('priority')=='Kolej Perdana' ? 'selected' : ''
-                                        }}>Kolej Perdana
-                                    </option>
-                                    <option value="Kolej Tun Razak" {{ old('priority')=='Kolej Tun Razak' ? 'selected'
-                                        : '' }}>Kolej Tun Razak
-                                    </option>
-                                    <option value="Kolej Rahman Putra" {{ old('priority')=='Kolej Rahman Putra'
-                                        ? 'selected' : '' }}>Kolej Rahman Putra
-                                    </option>
-                                    <option value="Kolej Tuanku Canselor" {{ old('priority')=='Kolej Tuanku Canselor'
-                                        ? 'selected' : '' }}>Kolej
-                                        Tuanku Canselor
-                                    </option>
-                                    <option value="Kolej Dato Onn Jaafar" {{ old('priority')=='Kolej Dato Onn Jaafar'
-                                        ? 'selected' : '' }}>Kolej Dato
-                                        Onn Jaafar
-                                    </option>
-                                    <option value="Kolej 9" {{ old('priority')=='Kolej 9' ? 'selected' : '' }}>
-                                        Kolej 9
-                                    </option>
-                                    <option value="Kolej 10" {{ old('priority')=='Kolej 10' ? 'selected' : '' }}>Kolej
-                                        10
-                                    </option>
-                                </select>
+                            <div style="float:left; display:flex;">
+                                <div class="mb-3 me-3" style="width:262px">
+                                    <select name="hostel" class="form-control">
+                                        <option value="" disabled selected>Hostel</option>
+                                        <option value="Kolej Tun Fatimah" {{ old('hostel')=='Kolej Tun Fatimah'
+                                            ? 'selected' : '' }}>Kolej Tun Fatimah</option>
+                                        <option value="Kolej Tun Dr Ismail" {{ old('hostel')=='Kolej Tun Dr Ismail'
+                                            ? 'selected' : '' }}>Kolej Tun
+                                            Dr Ismail
+                                        </option>
+                                        <option value="Kolej Tun Hussein Onn" {{ old('hostel')=='Kolej Tun Hussein Onn'
+                                            ? 'selected' : '' }}>Kolej Tun
+                                            Hussein Onn
+                                        </option>
+                                        <option value="Kolej Datin Seri Endon" {{
+                                            old('hostel')=='Kolej Datin Seri Endon' ? 'selected' : '' }}>Kolej
+                                            Datin Seri Endon
+                                        </option>
+                                        <option value="Kolej Perdana" {{ old('hostel')=='Kolej Perdana' ? 'selected'
+                                            : '' }}>Kolej Perdana
+                                        </option>
+                                        <option value="Kolej Tun Razak" {{ old('hostel')=='Kolej Tun Razak' ? 'selected'
+                                            : '' }}>Kolej Tun Razak
+                                        </option>
+                                        <option value="Kolej Rahman Putra" {{ old('hostel')=='Kolej Rahman Putra'
+                                            ? 'selected' : '' }}>Kolej Rahman Putra
+                                        </option>
+                                        <option value="Kolej Tuanku Canselor" {{ old('hostel')=='Kolej Tuanku Canselor'
+                                            ? 'selected' : '' }}>Kolej
+                                            Tuanku Canselor
+                                        </option>
+                                        <option value="Kolej Dato Onn Jaafar" {{ old('hostel')=='Kolej Dato Onn Jaafar'
+                                            ? 'selected' : '' }}>Kolej Dato
+                                            Onn Jaafar
+                                        </option>
+                                        <option value="Kolej 9" {{ old('hostel')=='Kolej 9' ? 'selected' : '' }}>
+                                            Kolej 9
+                                        </option>
+                                        <option value="Kolej 10" {{ old('hostel')=='Kolej 10' ? 'selected' : '' }}>
+                                            Kolej
+                                            10
+                                        </option>
+                                    </select>
+                                </div>
+                                @error('hostel')
+                                <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                                @enderror
+
+                                <div class="mb-3 me-3" style="width:262px">
+                                    <select name="head" class="form-control">
+                                        <option value="" disabled selected>Head</option>
+                                        <option value="1" {{ old('head')=='1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('priority')=='0' ? 'selected' : '' }}>No
+                                        </option>
+                                    </select>
+                                </div>
+                                @error('head')
+                                <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                                @enderror
                             </div>
-                            @error('hostel')
-                            <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
-                            @enderror
                             <div class="text-center">
                                 <button class="btn bg-gradient-dark w-100 my-4 mb-2">Create</button>
                             </div>

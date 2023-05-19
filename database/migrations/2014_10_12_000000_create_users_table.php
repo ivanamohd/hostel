@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('floor')->nullable();
             $table->string('room')->nullable();
             $table->integer('role')->default(0);
+            $table->integer('head')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -30,6 +30,7 @@ class AdminController extends Controller
             'email' => 'required',
             'contact' => 'required',
             'hostel' => 'required',
+            'head' => 'required',
         ]);
 
         $formFields['role'] = '1';
