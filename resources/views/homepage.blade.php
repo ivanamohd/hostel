@@ -26,7 +26,8 @@
                         But be sure to check our FAQ section beforehand to view most frequently asked questions.
                     </h5>
                     <br>
-                    <a href="/register" class="btn btn-danger btn-round">Create An Account Today</a>
+                    <a href="/register" class="btn btn-danger btn-round">Create An
+                        Account Today</a>
                 </div>
             </div>
             <br />
@@ -88,98 +89,6 @@
             <h2 class="title">Frequently Asked Questions</h2>
             <h3>Have a question? Browse through our FAQ to see if your question has been addressed.</h3> <br><br>
             <a href="/faq" class="btn btn-outline-neutral btn-round"></i>Let's Go</a>
-            {{-- <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#avatar">
-                                <img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="...">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <a href="#paper-kit">
-                                <div class="author">
-                                    <h4 class="card-title">Henry Ford</h4>
-                                    <h6 class="card-category">Product Manager</h6>
-                                </div>
-                            </a>
-                            <p class="card-description text-center">
-                                Teamwork is so important that it is virtually impossible for you to reach the heights of
-                                your
-                                capabilities or make the money that you want without becoming very good at it.
-                            </p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-google-plus"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#avatar">
-                                <img src="../assets/img/faces/joe-gardner-2.jpg" alt="...">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <a href="#paper-kit">
-                                <div class="author">
-                                    <h4 class="card-title">Sophie West</h4>
-                                    <h6 class="card-category">Designer</h6>
-                                </div>
-                            </a>
-                            <p class="card-description text-center">
-                                A group becomes a team when each member is sure enough of himself and his contribution
-                                to praise the
-                                skill of the others. No one can whistle a symphony. It takes an orchestra to play it.
-                            </p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-google-plus"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-profile card-plain">
-                        <div class="card-avatar">
-                            <a href="#avatar">
-                                <img src="../assets/img/faces/erik-lucatero-2.jpg" alt="...">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <a href="#paper-kit">
-                                <div class="author">
-                                    <h4 class="card-title">Robert Orben</h4>
-                                    <h6 class="card-category">Developer</h6>
-                                </div>
-                            </a>
-                            <p class="card-description text-center">
-                                The strength of the team is each individual member. The strength of each member is the
-                                team. If you can
-                                laugh together, you can work together, silence isn’t golden, it’s deadly.
-                            </p>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-google-plus"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i
-                                    class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
     <!-- End FAQ -->
@@ -188,7 +97,8 @@
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <h2 class="text-center">Keep in touch?</h2>
-                    <form class="contact-form">
+                    <form class="contact-form" method="POST" action="/feedbacks" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Name</label>
@@ -198,9 +108,14 @@
                                             <i class="nc-icon nc-single-02"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" name="name" value="{{old('name')}}"
+                                        placeholder="Name">
                                 </div>
                             </div>
+                            @error('name')
+                            <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                            @enderror
+
                             <div class="col-md-6">
                                 <label>Email</label>
                                 <div class="input-group">
@@ -209,13 +124,22 @@
                                             <i class="nc-icon nc-email-85"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" value="{{old('email')}}"
+                                        placeholder="Email">
                                 </div>
                             </div>
+                            @error('email')
+                            <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                            @enderror
                         </div>
+
                         <label>Message</label>
-                        <textarea class="form-control" rows="4"
-                            placeholder="Tell us your thoughts and feelings..."></textarea>
+                        <textarea class="form-control" rows="4" name="feedback" maxlength="300"
+                            placeholder="Tell us your thoughts and feelings...">{{old('feedback')}}</textarea>
+                        @error('feedback')
+                        <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
+                        @enderror
+
                         <div class="row">
                             <div class="col-md-4 ml-auto mr-auto">
                                 <button class="btn btn-danger btn-lg btn-fill">Send Message</button>
@@ -227,11 +151,4 @@
         </div>
     </div>
 </div>
-<script>
-    var msg = '{{Session::get('alert')}}';
-    var exist = '{{Session::has('alert')}}';
-    if(exist){
-      alert(msg);
-    }
-</script>
 @endsection

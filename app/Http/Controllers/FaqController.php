@@ -74,7 +74,7 @@ class FaqController extends Controller
         ]);
     }
 
-    // Update Report
+    // Update FAQ
     public function update(Request $request, Faq $faq)
     {
         $formFields = $request->validate([
@@ -87,7 +87,7 @@ class FaqController extends Controller
         return redirect('/staff/faqlist')->with('message', 'FAQ updated successfully!');
     }
 
-    // Delete Report
+    // Delete FAQ
     public function destroy(Faq $faq)
     {
         $faq->delete();

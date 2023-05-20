@@ -7,6 +7,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::get('/', function () {
 
 // FAQ
 Route::get('/faq', [FaqController::class, 'homepage']);
+
+// Feedback
+Route::post('/feedbacks', [FeedbackController::class, 'store']);
 
 Route::middleware('auth', 'isStudent')->group(function () {
     // Dashboard
@@ -70,9 +74,6 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
 
     // Create Report For Single Student Form
     Route::get('/reports/create/{student}', [ReportController::class, 'create_student_report']);
-
-    // Store Report
-    // Route::post('/reports', [ReportController::class, 'store']);
 
     // Store Report
     Route::post('/reports/by/{student}', [ReportController::class, 'store_student_report']);
@@ -142,6 +143,15 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
 
     // Delete FAQ
     Route::delete('/faq/{faq}', [FaqController::class, 'destroy']);
+
+    // All Feedbacks
+    Route::get('/feedbacks', [FeedbackController::class, 'index']);
+
+    // Show Single Feedback
+    Route::get('/feedbacks/{feedback}', [FeedbackController::class, 'show']);
+
+    // Delete Feedback
+    Route::delete('/feedbacks/{feedback}', [FeedbackController::class, 'destroy']);
 });
 
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {

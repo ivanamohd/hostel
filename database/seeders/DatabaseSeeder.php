@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Faq;
+use App\Models\Feedback;
 use App\Models\User;
 use App\Models\Report;
 use Illuminate\Database\Seeder;
@@ -256,6 +257,19 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $feedbacks = [
+            [
+                'name' => 'Siti',
+                'email' => 'siti@example.com',
+                'feedback' => 'No feedback example',
+            ],
+            [
+                'name' => 'Hana',
+                'email' => 'hana@example.com',
+                'feedback' => 'No feedback example2',
+            ],
+        ];
+
         foreach ($users as $user) {
             User::create($user);
         }
@@ -266,6 +280,10 @@ class DatabaseSeeder extends Seeder
 
         foreach ($faq as $faq) {
             Faq::create($faq);
+        }
+
+        foreach ($feedbacks as $feedback) {
+            Feedback::create($feedback);
         }
     }
 }
