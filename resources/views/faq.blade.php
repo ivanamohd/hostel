@@ -12,19 +12,10 @@
     </div>
     <div class="profile-content">
         <div class="container" style="margin-bottom:50pt">
-            {{-- <h4 style="color: black" class="title text-center">Frequently Asked Questions
-                <br />
-            </h4> --}}
-            {{-- <h6 class="description">View frequently asked questions.</h6>
-            <br /> --}}
             <br />
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                     <ul class="nav nav-tabs" role="tablist">
-                        {{-- <li class="nav-item">
-                            <a class="nav-link active" style="color: black" data-toggle="tab" href="#all"
-                                role="tab">ALL</a>
-                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link active" style="color: black" data-toggle="tab" href="#krp"
                                 role="tab">KRP</a>

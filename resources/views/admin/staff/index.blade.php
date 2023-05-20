@@ -45,33 +45,33 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($staff as $staff)
+                                @foreach ($staff as $staf)
                                 <tr>
                                     <td>
                                         <div class="ps-3">
-                                            <span class="text-secondary text-xs font-weight-bold">{{$staff->id}}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{$staf->id}}</span>
                                         </div>
                                     </td>
 
                                     <td class="text-secondary text-xs font-weight-bold">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$staff->name}}</span>
+                                        <span class="text-secondary text-xs font-weight-bold">{{$staf->name}}</span>
                                     </td>
 
                                     <td class="text-secondary text-xs font-weight-bold">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$staff->email}}</span>
+                                        <span class="text-secondary text-xs font-weight-bold">{{$staf->email}}</span>
                                     </td>
 
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$staff->contact ?
-                                            $staff->contact : 'N/A'}}</span>
+                                        <span class="text-secondary text-xs font-weight-bold">{{$staf->contact ?
+                                            $staf->contact : 'N/A'}}</span>
                                     </td>
 
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{$staff->hostel}}</span>
+                                        <span class="text-secondary text-xs font-weight-bold">{{$staf->hostel}}</span>
                                     </td>
 
                                     <td class="align-middle text-center">
-                                        @if($staff->head == "1")
+                                        @if($staf->head == "1")
                                         <span class="text-secondary text-xs font-weight-bold">Yes</span>
                                         @else
                                         <span class="text-secondary text-xs font-weight-bold">No</span>
@@ -79,7 +79,7 @@
                                     </td>
 
                                     <td class="align-middle">
-                                        <a href="/admin/staff/{{$staff->id}}"
+                                        <a href="/admin/staff/{{$staf->id}}"
                                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip">
                                             View
                                         </a>
@@ -94,7 +94,7 @@
                     </div>
                     <!-- Card footer -->
                     <div class="card-footer pb-0">
-                        {{-- {{$staff->links()}} --}}
+                        {{$staff->links()}}
                     </div>
                 </div>
             </div>

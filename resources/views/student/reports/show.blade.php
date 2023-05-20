@@ -149,20 +149,6 @@
                                 });
                             </script>
                         </div>
-
-                        {{-- <label for="files">Select files:</label>
-                        <input type="file" id="files" name="files" multiple> --}}
-
-                        {{-- <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Category" aria-label="Category">
-                        </div> --}}
-                        {{-- <div class="form-check form-check-info text-start">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and
-                                    Conditions</a>
-                            </label>
-                        </div> --}}
                         <form method="POST" action="/reports/{{$report->id}}">
                             @csrf
                             @method('DELETE')

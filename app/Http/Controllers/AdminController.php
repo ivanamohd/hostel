@@ -67,6 +67,7 @@ class AdminController extends Controller
             'name' => 'required',
             'contact' => 'required',
             'hostel' => 'required',
+            'head' => 'required',
         ]);
 
         $staff->update($formFields);

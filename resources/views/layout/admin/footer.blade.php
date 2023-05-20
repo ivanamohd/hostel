@@ -13,14 +13,10 @@
             <div class="col-lg-6">
                 <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                     <li class="nav-item">
-                        <a href="https://www.updivision.com" class="nav-link text-muted" target="_blank">Homepage</a>
+                        <a href="/" class="nav-link text-muted" target="_blank">Homepage</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                            target="_blank">FAQ</a>
+                        <a href="/faq" class="nav-link text-muted" target="_blank">FAQ</a>
                     </li>
                 </ul>
             </div>

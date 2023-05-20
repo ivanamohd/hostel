@@ -27,14 +27,10 @@
         style="background-image: url({{ asset('images/utm-hill.jpg'); }}); background-position-y: 80%;">
         <span class="mask opacity-6 bg-student-1"></span>
     </div>
-    {{-- @endif --}}
     @include('layout.student.sidenav')
     <main class="main-content border-radius-lg">
         @yield('content')
     </main>
-    {{-- @include('components.fixed-plugin')
-    @endif
-    @endauth --}}
 
     <!--   Core JS Files   -->
     <script src="{{ asset('js/staff/core/popper.min.js') }}"></script>

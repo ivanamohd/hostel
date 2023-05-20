@@ -1,5 +1,3 @@
-{{-- <p>Test {{$report['category']}}</p> --}}
-
 @extends('layout.staff.layout-staff', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('title', 'View Ticket')

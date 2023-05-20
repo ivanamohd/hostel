@@ -44,16 +44,9 @@
                                 <tr>
                                     <td>
                                         <div class="ps-3">
-                                            {{-- <p class="text-xs font-weight-bold mb-0">
-                                                {{$report->id}}</p> --}}
                                             <span class="text-secondary text-xs font-weight-bold">{{$report->id}}</span>
                                         </div>
                                     </td>
-                                    {{-- <td>
-                                        <p class="text-xs font-weight-bold mb-0">
-                                            {{$report->category}}</p>
-                                        <p class="text-xs text-secondary mb-0">Organization</p>
-                                    </td> --}}
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">
                                             {{$report->category}}</p>

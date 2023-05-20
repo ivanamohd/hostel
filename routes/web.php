@@ -8,7 +8,6 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +29,6 @@ Route::get('/faq', [FaqController::class, 'homepage']);
 
 // Feedback
 Route::post('/feedbacks', [FeedbackController::class, 'store']);
-
-// Email
-// Route::get('/send', [MailController::class, 'index']);
 
 Route::middleware('auth', 'isStudent')->group(function () {
     // Dashboard

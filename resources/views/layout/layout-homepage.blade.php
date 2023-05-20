@@ -27,9 +27,6 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
-                    {{-- <li class="nav-item">
-                        <a href="../index.html" class="nav-link"></i> About</a>
-                    </li> --}}
                     <li class="nav-item">
                         <a href="https://studentaffairs.utm.my/residential-college-contact/" target="_blank"
                             class="nav-link"></i> Contact</a>

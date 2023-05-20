@@ -15,7 +15,7 @@ class FeedbackController extends Controller
         ]);
     }
 
-    // Store FAQ
+    // Store Feedback
     public function store(Request $request)
     {
         $formFields = $request->validate([

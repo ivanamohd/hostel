@@ -10,7 +10,6 @@ class FaqController extends Controller
     // All FAQ
     public function homepage()
     {
-        // dd(request('status'));
         return view('faq', [
             'all' => Faq::latest()->where('hostel', '=', 'All')->get(),
             'krp' => Faq::latest()->where('hostel', '=', 'Kolej Rahman Putra')->get(),

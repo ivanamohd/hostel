@@ -120,9 +120,6 @@
                                     Reporter</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                     Description</th>
-                                {{-- <th class=" text-center text-uppercase text-secondary text-xxs font-weight-bolder
-                                        opacity-7">
-                                    Status</th> --}}
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Date</th>
@@ -151,27 +148,6 @@
                                     <p class="text-xs text-secondary mb-0">{{
                                         Str::limit($report->description, '50', '...') }}</p>
                                 </td>
-
-                                {{-- <td class="align-middle text-center text-sm">
-                                    <a href="/staff/reports/?status={{$report->status}}">
-                                        @if($report->status == 'Pending')
-                                        <span class="badge badge-sm bg-gradient-faded-dark"
-                                            style="width:85px">{{$report->status}}</span>
-                                        @elseif($report->status == 'In Review')
-                                        <span class="badge badge-sm bg-gradient-faded-secondary"
-                                            style="width:85px">{{$report->status}}</span>
-                                        @elseif($report->status == 'In Progress')
-                                        <span class="badge badge-sm bg-gradient-info"
-                                            style="width:85px">{{$report->status}}</span>
-                                        @elseif($report->status == 'Fixing Day')
-                                        <span class="badge badge-sm bg-gradient-warning"
-                                            style="width:85px">{{$report->status}}</span>
-                                        @elseif($report->status == 'Resolved')
-                                        <span class="badge badge-sm bg-gradient-success"
-                                            style="width:85px">{{$report->status}}</span>
-                                        @endif
-                                    </a>
-                                </td> --}}
                                 <td class="align-middle text-center">
                                     <span
                                         class="text-secondary text-xs font-weight-bold">{{$report->created_at->format('d/m/Y

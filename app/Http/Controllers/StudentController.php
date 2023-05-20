@@ -28,7 +28,6 @@ class StudentController extends Controller
     public function index()
     {
         $user = auth()->user();
-        // dd(request('status'));
 
         if ($user->role == 1) {
             return view('staff.students.index', [

@@ -16,7 +16,6 @@ class ReportController extends Controller
     public function index()
     {
         $user = auth()->user();
-        // dd(request('status'));
 
         if ($user->role == 1) {
             return view('staff.reports.index', [
@@ -65,7 +64,7 @@ class ReportController extends Controller
         $user = auth()->user();
 
         if ($user->role == 1) {
-            // return view('staff.reports.create');
+            // create_student_report
         } else {
             if ($user->contact != NULL && $user->block != NULL && $user->floor != NULL && $user->room != NULL) {
                 return view('student.reports.create');
@@ -83,34 +82,8 @@ class ReportController extends Controller
         $user = auth()->user();
 
         if ($user->role == 1) {
-            //     $formFields = $request->validate([
-            //         'category' => 'required',
-            //         'description' => 'required',
-            //         'name' => 'required',
-            //         'email' => 'required',
-            //         'contact' => 'required',
-            //         'status' => 'required',
-            //         'contact' => 'required',
-            //         'hostel' => 'required',
-            //         'block' => 'required',
-            //         'floor' => 'required',
-            //         'room' => 'required',
-            //         'assign' => 'required',
-            //         'evidence' => 'required',
-            //     ]);
-
-            //     if ($request->hasFile('evidence')) {
-            //         $formFields['evidence'] = $request->file('evidence')->store('evidence', 'public');
-            //     }
-
-            //     $formFields['user_id'] = auth()->id();
-            //     $formFields['assign'] = 'Unassigned';
-
-            //     Report::create($formFields);
-
-            //     return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
+            // store_student_report
         } else {
-            // dd(auth()->user()->hostel);
             $formFieldsStudent = $request->validate([
                 'category' => 'required',
                 'description' => 'required',
@@ -148,8 +121,6 @@ class ReportController extends Controller
             } catch (Exception $th) {
                 return redirect('/reports')->with('message', 'Ticket created successfully but email is not sent!');
             }
-
-            // return redirect('/reports')->with('message', 'Ticket created successfully!');
         }
     }
 
@@ -172,7 +143,6 @@ class ReportController extends Controller
 
     public function store_student_report(Request $request, Student $student)
     {
-        // dd($student);
         $formFieldsStudent = $request->validate([
             'category' => 'required',
             'description' => 'required',
@@ -210,8 +180,6 @@ class ReportController extends Controller
         } catch (Exception $th) {
             return redirect('/staff/reports')->with('message', 'Ticket created successfully but email is not sent!');
         }
-
-        // return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
     }
 
     // Show Edit Form
@@ -219,7 +187,6 @@ class ReportController extends Controller
     {
         $user = auth()->user();
 
-        // dd($report->category);
         return view('staff.reports.edit', [
             'report' => $report,
             'staff' => User::select('name')->where([['hostel', '=', $user->hostel], ['role', '=', '1'], ['id', '=', $user->id]])->get(),
@@ -231,7 +198,6 @@ class ReportController extends Controller
     // Update Report
     public function update(Request $request, Report $report)
     {
-        // dd($report);
         $user = auth()->user();
 
         if ($user->role == 1) {
@@ -274,31 +240,7 @@ class ReportController extends Controller
                 return redirect('/staff/reports')->with('message', 'Ticket updated successfully!');
             }
         } else {
-            // Make sure logged in user is owner
-            if ($report->user_id != auth()->id()) {
-                abort(403, 'Unauthorized Action');
-            }
-
-            $formFields = $request->validate([
-                'category' => 'required',
-                'description' => 'required',
-                'priority' => 'required',
-                'status' => 'required',
-                'contact' => 'required',
-                'hostel' => 'required',
-                'block' => 'required',
-                'floor' => 'required',
-                'room' => 'required',
-                'assign' => 'required',
-            ]);
-
-            if ($request->hasFile('evidence')) {
-                $formFields['evidence'] = $request->file('evidence')->store('evidence', 'public');
-            }
-
-            $report->update($formFields);
-
-            return back()->with('message', 'Ticket updated successfully!');
+            // Student cannot update
         }
     }
 
@@ -325,7 +267,6 @@ class ReportController extends Controller
     public function manage()
     {
         return view('staff.reports.manage', [
-            // dd(auth()->user()->reports)
             'reports' => Report::latest()->where('user_id', auth()->user()->id)->paginate(7)
         ]);
     }

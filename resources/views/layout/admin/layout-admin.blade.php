@@ -22,31 +22,14 @@
 
 <body class="{{ $class ?? '' }}">
     <x-message />
-
-    {{-- @guest
-    @yield('content')
-    @endguest --}}
-
-    {{-- @auth
-    @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register',
-    'recover-password', 'rtl', 'virtual-reality'])) --}}
-    {{-- @yield('content') --}}
-    {{-- @else
-    @if (!in_array(request()->route()->getName(), ['profile', 'profile-static']))
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
-    @elseif (in_array(request()->route()->getName(), ['profile-static', 'profile'])) --}}
     <div class="position-absolute w-100 min-height-300 top-0"
         style="background-image: url({{ asset('images/utm-lake.png'); }}); background-position-y: 70%;">
         <span class="mask opacity-6" style="background-color: #1D3362"></span>
     </div>
-    {{-- @endif --}}
     @include('layout.admin.sidenav')
     <main class="main-content border-radius-lg">
         @yield('content')
     </main>
-    {{-- @include('components.fixed-plugin')
-    @endif
-    @endauth --}}
 
     <!--   Core JS Files   -->
     <script src="{{ asset('js/staff/core/popper.min.js') }}"></script>

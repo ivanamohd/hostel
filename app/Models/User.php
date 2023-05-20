@@ -65,12 +65,12 @@ class User extends Authenticatable
         }
 
         if ($filters['search'] ?? false) {
-            $query->where('block', 'like', '%' . request('block') . '%')
-                ->orWhere('floor', 'like', '%' . request('floor') . '%')
-                ->orWhere('room', 'like', '%' . request('room') . '%');
-            // ->orWhere('name', 'like', '%' . request('name') . '%')
-            // ->orWhere('email', 'like', '%' . request('email') . '%')
-            // ->orWhere('contact', 'like', '%' . request('contact') . '%');
+            $query->where('block', 'like', '%' . request('search') . '%')
+                ->orWhere('floor', 'like', '%' . request('search') . '%')
+                ->orWhere('room', 'like', '%' . request('search') . '%')
+                ->orWhere('name', 'like', '%' . request('search') . '%')
+                ->orWhere('email', 'like', '%' . request('search') . '%')
+                ->orWhere('contact', 'like', '%' . request('search') . '%');
         }
     }
 }

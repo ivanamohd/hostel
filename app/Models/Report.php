@@ -33,15 +33,4 @@ class Report extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    // public static function find($id)
-    // {
-    //     $reports = self::all();
-
-    //     foreach ($reports as $report) {
-    //         if ($report['id'] == $id) {
-    //             return $report;
-    //         }
-    //     }
-    // }
 }
