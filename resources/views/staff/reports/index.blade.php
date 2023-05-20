@@ -145,11 +145,6 @@
                 <div class="card-header pb-0">
                     <h6>Active Tickets</h6>
                 </div>
-                {{-- <div>
-                    <a href="/staff/reports/create">
-                        <button class="text-uppercase text-secondary text-xxs font-weight-bolder btn btn-sm fas fa-plus"
-                            style="position:absolute; top:1rem; right:1rem"></button></a>
-                </div> --}}
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">

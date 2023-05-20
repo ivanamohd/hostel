@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FaqController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ use App\Http\Controllers\StudentController;
 Route::get('/', function () {
     return view('homepage');
 });
+
+// FAQ
+Route::get('/faq', [FaqController::class, 'homepage']);
 
 Route::middleware('auth', 'isStudent')->group(function () {
     // Dashboard
@@ -117,6 +121,27 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
 
     // Show Profile
     Route::get('/profile/{staff}', [StaffController::class, 'show']);
+
+    // All FAQ
+    Route::get('/faqlist', [FaqController::class, 'index']);
+
+    // Create New Student
+    Route::get('/faq/create', [FaqController::class, 'create']);
+
+    // Store New FAQ
+    Route::post('/faq', [FaqController::class, 'store']);
+
+    // Show Edit FAQ Form
+    Route::get('/faq/{faq}/edit', [FaqController::class, 'edit']);
+
+    // Update FAQ
+    Route::put('/faq/{faq}', [FaqController::class, 'update']);
+
+    // Show Single FAQ
+    Route::get('/faq/{faq}', [FaqController::class, 'show']);
+
+    // Delete FAQ
+    Route::delete('/faq/{faq}', [FaqController::class, 'destroy']);
 });
 
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {

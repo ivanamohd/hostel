@@ -35,41 +35,51 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="hostel">Hostel:</label>
-                            <select name="hostel" class="form-control bg-white" disabled>
-                                <option value="Kolej Tun Fatimah" {{ $staff->hostel=='Kolej Tun Fatimah' ?
-                                    'selected' : '' }}>Kolej Tun Fatimah</option>
-                                <option value="Kolej Tun Dr Ismail" {{ $staff->hostel=='Kolej Tun Dr Ismail' ?
-                                    'selected' : '' }}>Kolej Tun Dr Ismail
-                                </option>
-                                <option value="Kolej Tun Hussein Onn" {{ $staff->hostel=='Kolej Tun Hussein Onn' ?
-                                    'selected' : '' }}>Kolej Tun Hussein Onn
-                                </option>
-                                <option value="Kolej Datin Seri Endon" {{ $staff->hostel=='Kolej Datin Seri Endon'
-                                    ? 'selected' : '' }}>Kolej Datin Seri Endon
-                                </option>
-                                <option value="Kolej Perdana" {{ $staff->hostel=='Kolej Perdana' ? 'selected' : ''
-                                    }}>Kolej Perdana
-                                </option>
-                                <option value="Kolej Tun Razak" {{ $staff->hostel=='Kolej Tun Razak' ? 'selected'
-                                    : '' }}>Kolej Tun Razak
-                                </option>
-                                <option value="Kolej Rahman Putra" {{ $staff->hostel=='Kolej Rahman Putra' ?
-                                    'selected' : '' }}>Kolej Rahman Putra
-                                </option>
-                                <option value="Kolej Tuanku Canselor" {{ $staff->hostel=='Kolej Tuanku Canselor' ?
-                                    'selected' : ''
-                                    }}>Kolej Tuanku Canselor</option>
-                                <option value="Kolej Dato Onn Jaafar" {{ $staff->hostel=='Kolej Dato Onn Jaafar' ?
-                                    'selected' : '' }}>Kolej Dato Onn Jaafar
-                                </option>
-                                <option value="Kolej 9" {{ $staff->hostel=='Kolej 9' ? 'selected' : '' }}>Kolej 9
-                                </option>
-                                <option value="Kolej 10" {{ $staff->hostel=='Kolej 10' ? 'selected' : '' }}>Kolej
-                                    10
-                                </option>
-                            </select>
+                        <div style="float:left; display:flex;">
+                            <div class="mb-3 me-3">
+                                <label for="hostel">Hostel:</label>
+                                <select name="hostel" style="width:262px" class="form-control bg-white" disabled>
+                                    <option value="Kolej Tun Fatimah" {{ $staff->hostel=='Kolej Tun Fatimah' ?
+                                        'selected' : '' }}>Kolej Tun Fatimah</option>
+                                    <option value="Kolej Tun Dr Ismail" {{ $staff->hostel=='Kolej Tun Dr Ismail' ?
+                                        'selected' : '' }}>Kolej Tun Dr Ismail
+                                    </option>
+                                    <option value="Kolej Tun Hussein Onn" {{ $staff->hostel=='Kolej Tun Hussein Onn' ?
+                                        'selected' : '' }}>Kolej Tun Hussein Onn
+                                    </option>
+                                    <option value="Kolej Datin Seri Endon" {{ $staff->hostel=='Kolej Datin Seri Endon'
+                                        ? 'selected' : '' }}>Kolej Datin Seri Endon
+                                    </option>
+                                    <option value="Kolej Perdana" {{ $staff->hostel=='Kolej Perdana' ? 'selected' : ''
+                                        }}>Kolej Perdana
+                                    </option>
+                                    <option value="Kolej Tun Razak" {{ $staff->hostel=='Kolej Tun Razak' ? 'selected'
+                                        : '' }}>Kolej Tun Razak
+                                    </option>
+                                    <option value="Kolej Rahman Putra" {{ $staff->hostel=='Kolej Rahman Putra' ?
+                                        'selected' : '' }}>Kolej Rahman Putra
+                                    </option>
+                                    <option value="Kolej Tuanku Canselor" {{ $staff->hostel=='Kolej Tuanku Canselor' ?
+                                        'selected' : ''
+                                        }}>Kolej Tuanku Canselor</option>
+                                    <option value="Kolej Dato Onn Jaafar" {{ $staff->hostel=='Kolej Dato Onn Jaafar' ?
+                                        'selected' : '' }}>Kolej Dato Onn Jaafar
+                                    </option>
+                                    <option value="Kolej 9" {{ $staff->hostel=='Kolej 9' ? 'selected' : '' }}>Kolej 9
+                                    </option>
+                                    <option value="Kolej 10" {{ $staff->hostel=='Kolej 10' ? 'selected' : '' }}>Kolej
+                                        10
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="mb-3 me-3">
+                                <label for="head">Head:</label>
+                                @if($staff->head == '1')
+                                <span class="form-control" name="head" style="width:262px">Yes</span>
+                                @else
+                                <span class="form-control" name="head" style="width:262px">No</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

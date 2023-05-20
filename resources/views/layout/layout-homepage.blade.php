@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="300">
         <div class="container">
             <div class="navbar-translate">
-                <img src="{{ asset('images/logo-brown.png') }}" style="width:100px" />
+                <a href="/"><img src="{{ asset('images/logo-brown.png') }}" style="width:100px" /></a>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
@@ -34,9 +34,9 @@
                         <a href="https://studentaffairs.utm.my/residential-college-contact/" target="_blank"
                             class="nav-link"></i> Contact</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a href="#" target="_blank" class="nav-link"></i> FAQ</a>
-                    </li> --}}
+                    <li class="nav-item">
+                        <a href="/faq" class="nav-link"></i> FAQ</a>
+                    </li>
                     <li class="nav-item">
                         <a href="/register" class="nav-link btn btn-outline-default2 btn-round"></i> Get
                             Started</a>
@@ -69,7 +69,7 @@
                         ©
                         <script>
                             document.write(new Date().getFullYear())
-                        </script>, made with <i class="fa fa-heart heart"></i> by HotelCare
+                        </script>, made with <i class="fa fa-heart heart"></i> by HostelCare
                     </span>
                 </div>
             </div>

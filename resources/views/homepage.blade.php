@@ -86,6 +86,8 @@
     <div class="section section-dark text-center">
         <div class="container">
             <h2 class="title">Frequently Asked Questions</h2>
+            <h3>Have a question? Browse through our FAQ to see if your question has been addressed.</h3> <br><br>
+            <a href="/faq" class="btn btn-outline-neutral btn-round"></i>Let's Go</a>
             {{-- <div class="row">
                 <div class="col-md-4">
                     <div class="card card-profile card-plain">

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Faq;
 use App\Models\User;
 use App\Models\Report;
 use Illuminate\Database\Seeder;
@@ -232,12 +233,39 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $faq = [
+            [
+                'hostel' => 'Kolej 9',
+                'question' => 'When is the date to return the key?',
+                'answer' => 'The last date to return the key is on 9th June 2023.',
+            ],
+            [
+                'hostel' => 'Kolej 9',
+                'question' => 'When is the date to apply for a room?',
+                'answer' => 'The last date to apply for a room is on 15th June 2023.',
+            ],
+            [
+                'hostel' => 'Kolej Tun Fatimah',
+                'question' => 'What is the rate for single rooms?',
+                'answer' => 'The rate is RM6 per day.',
+            ],
+            [
+                'hostel' => 'Kolej 10',
+                'question' => 'What is the rate for double rooms?',
+                'answer' => 'The rate is RM4 per day.',
+            ],
+        ];
+
         foreach ($users as $user) {
             User::create($user);
         }
 
         foreach ($reports as $report) {
             Report::create($report);
+        }
+
+        foreach ($faq as $faq) {
+            Faq::create($faq);
         }
     }
 }
