@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Models\Report;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Exception;
+use App\Mail\MailNotify;
+use Illuminate\Support\Facades\Mail;
 
 class ReportController extends Controller
 {
@@ -129,9 +132,24 @@ class ReportController extends Controller
             $formFieldsStudent['priority'] = 'Unassigned';
             $formFieldsStudent['assign'] = 'Unassigned';
 
-            Report::create($formFieldsStudent);
+            $report = Report::create($formFieldsStudent);
 
-            return redirect('/reports')->with('message', 'Ticket created successfully!');
+            // Send email
+            $data = [
+                'subject' => 'Ticket Created',
+                'id' => $report->id,
+                'category' => $report->category,
+                'description' => $report->description,
+                'status' => $report->status,
+            ];
+            try {
+                Mail::to($report->email)->send(new MailNotify($data, 'new'));
+                return redirect('/reports')->with('message', 'Ticket created successfully!');
+            } catch (Exception $th) {
+                return redirect('/reports')->with('message', 'Ticket created successfully but email is not sent!');
+            }
+
+            // return redirect('/reports')->with('message', 'Ticket created successfully!');
         }
     }
 
@@ -176,9 +194,24 @@ class ReportController extends Controller
         $formFieldsStudent['room'] = $student->room;
         $formFieldsStudent['status'] = 'Pending';
 
-        Report::create($formFieldsStudent);
+        $report = Report::create($formFieldsStudent);
 
-        return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
+        // Send email
+        $data = [
+            'subject' => 'Ticket Created',
+            'id' => $report->id,
+            'category' => $report->category,
+            'description' => $report->description,
+            'status' => $report->status,
+        ];
+        try {
+            Mail::to($report->email)->send(new MailNotify($data, 'new'));
+            return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
+        } catch (Exception $th) {
+            return redirect('/staff/reports')->with('message', 'Ticket created successfully but email is not sent!');
+        }
+
+        // return redirect('/staff/reports')->with('message', 'Ticket created successfully!');
     }
 
     // Show Edit Form
@@ -208,13 +241,38 @@ class ReportController extends Controller
                 'assign' => 'required',
             ]);
 
+            // Check if the status has changed
+            if ($report->status != $formFields['status']) {
+                $statusChanged = true;
+            } else {
+                $statusChanged = false;
+            }
+
             if ($request->hasFile('evidence')) {
                 $formFields['evidence'] = $request->file('evidence')->store('evidence', 'public');
             }
 
             $report->update($formFields);
 
-            return redirect('/staff/reports')->with('message', 'Ticket updated successfully!');
+            // Send email if the status has changed
+            if ($statusChanged) {
+                $data = [
+                    'subject' => 'Ticket Status Update',
+                    'id' => $report->id,
+                    'category' => $report->category,
+                    'description' => $report->description,
+                    'status' => $report->status,
+                ];
+
+                try {
+                    Mail::to($report->email)->send(new MailNotify($data, 'index'));
+                    return redirect('/staff/reports')->with('message', 'Ticket updated successfully and email sent!');
+                } catch (Exception $th) {
+                    return redirect('/staff/reports')->with('message', 'Ticket updated successfully but email is not sent!');
+                }
+            } else {
+                return redirect('/staff/reports')->with('message', 'Ticket updated successfully!');
+            }
         } else {
             // Make sure logged in user is owner
             if ($report->user_id != auth()->id()) {
