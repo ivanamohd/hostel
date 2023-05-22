@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -32,6 +33,8 @@ class UserController extends Controller
 
         // Login
         auth()->login($user);
+
+        event(new Registered($user));
 
         return redirect('/dashboard')->with('message', 'Account created and logged in');
     }
@@ -67,7 +70,11 @@ class UserController extends Controller
             if (auth()->user()->role == 0) {
                 return redirect('/dashboard')->with('message', 'Logged in');
             } else if (auth()->user()->role == 1) {
-                return redirect('/staff/dashboard')->with('message', 'Logged in');
+                if (auth()->user()->password_reset == false) {
+                    return redirect()->route('password.request');
+                } else {
+                    return redirect('/staff/dashboard')->with('message', 'Logged in');
+                }
             } else if (auth()->user()->role == 2) {
                 return redirect('/admin/staff')->with('message', 'Logged in');
             } else {

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('room')->nullable();
             $table->integer('role')->default(0);
             $table->integer('head')->nullable();
+            $table->boolean('password_reset')->nullable()->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -8,7 +8,7 @@
     <title>Ticket Created</title>
 </head>
 
-<body>
+<body style="font-family: Arial, sans-serif; font-size: 15px">
     <p>We have successfully received your report. You can track the progress of your ticket via our website.
         Additionally, we will notify you via email if there are any changes to your ticket's status.</p><br>
     <b>Ticket Details:</b>

@@ -1,13 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeedbackController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,23 @@ Route::get('/faq', [FaqController::class, 'homepage']);
 // Feedback
 Route::post('/feedbacks', [FeedbackController::class, 'store']);
 
-Route::middleware('auth', 'isStudent')->group(function () {
+// Email Verification
+Auth::routes(['verify' => true]);
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/dashboard')->with('message', 'Email verification successful!');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Email Forgot
+// Route::get('/forgot', function () {
+//     return view('auth.passwords.email');
+// });
+
+Route::middleware(['auth', 'verified', 'isStudent'])->group(function () {
     // Dashboard
-    Route::get('/dashboard', [StudentController::class, 'dashboard']);
+    Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
 
     // All Reports
     Route::get('/reports', [ReportController::class, 'index']);
@@ -64,7 +80,7 @@ Route::middleware('auth', 'isStudent')->group(function () {
 
 Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
     // Dashboard
-    Route::get('/dashboard', [StaffController::class, 'dashboard']);
+    Route::get('/dashboard', [StaffController::class, 'dashboard'])->name('staff.dashboard');
 
     // All Reports
     Route::get('/reports', [ReportController::class, 'index']);
@@ -156,7 +172,7 @@ Route::prefix('staff')->middleware('auth', 'isStaff')->group(function () {
 
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     // All Staff
-    Route::get('/staff', [AdminController::class, 'index']);
+    Route::get('/staff', [AdminController::class, 'index'])->name('admin.staff');
 
     // Create Staff Form
     Route::get('/staff/create', [AdminController::class, 'create']);

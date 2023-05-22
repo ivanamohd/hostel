@@ -27,19 +27,22 @@
                                     <div class="mb-3">
                                         <input type="password" class="form-control form-control-lg"
                                             placeholder="Password" name="password" value="{{old('password')}}">
+                                        <p class="mt-2 text-sm mx-2"><a href="{{ route('password.request') }}">Forgot
+                                                your password?</a>
+                                        </p>
                                     </div>
                                     @error('password')
                                     <p class="text-danger text-xs mt-1 px-1">{{$message}}</p>
                                     @enderror
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign
+                                        <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-3 mb-0">Sign
                                             in</button>
                                     </div>
                                 </form>
                             </div>
                             <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                <p class="mb-4 text-sm mx-auto">
+                                <p class="mb-2 text-sm mx-auto">
                                     Don't have an account?
                                     <a href="/register" class="text-primary text-gradient font-weight-bold">Sign
                                         up</a>

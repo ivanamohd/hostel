@@ -8,7 +8,7 @@
     <title>Ticket Status Update</title>
 </head>
 
-<body>
+<body style="font-family: Arial, sans-serif; font-size: 15px">
     <b>Ticket Details:</b>
     <p>ID: {{$data['id']}}</p>
     <p>Category: {{$data['category']}}</p>
