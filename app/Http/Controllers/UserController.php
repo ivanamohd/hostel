@@ -68,7 +68,11 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             if (auth()->user()->role == 0) {
-                return redirect('/dashboard')->with('message', 'Logged in');
+                if (auth()->user()->password_reset == false) {
+                    return redirect()->route('password.request');
+                } else {
+                    return redirect('/dashboard')->with('message', 'Logged in');
+                }
             } else if (auth()->user()->role == 1) {
                 if (auth()->user()->password_reset == false) {
                     return redirect()->route('password.request');

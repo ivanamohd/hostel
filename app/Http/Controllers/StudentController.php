@@ -111,7 +111,7 @@ class StudentController extends Controller
         return view('staff.students.create');
     }
 
-    // Create New User
+    // Create New Student
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -125,6 +125,7 @@ class StudentController extends Controller
         ]);
 
         $formFields['password'] = 'password';
+        $formFields['password_reset'] = false;
 
         // Hash Password
         $formFields['password'] = bcrypt($formFields['password']);

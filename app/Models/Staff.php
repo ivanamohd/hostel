@@ -22,5 +22,6 @@ class Staff extends Model
         'role',
         'head',
         'password',
+        'password_reset',
     ];
 }

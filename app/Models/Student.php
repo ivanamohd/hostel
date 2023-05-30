@@ -20,5 +20,6 @@ class Student extends Model
         'floor',
         'room',
         'password',
+        'password_reset',
     ];
 }

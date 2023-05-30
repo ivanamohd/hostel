@@ -41,11 +41,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/dashboard')->with('message', 'Email verification successful!');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-// Email Forgot
-// Route::get('/forgot', function () {
-//     return view('auth.passwords.email');
-// });
-
 Route::middleware(['auth', 'verified', 'isStudent'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');

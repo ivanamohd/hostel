@@ -35,6 +35,7 @@ class AdminController extends Controller
 
         $formFields['role'] = '1';
         $formFields['password'] = 'password';
+        $formFields['password_reset'] = false;
 
         // Hash Password
         $formFields['password'] = bcrypt($formFields['password']);
