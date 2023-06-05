@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -26,9 +27,9 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'contact' => 'required',
+            'name' => ['required', 'min:3', Rule::unique('users', 'name')],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
             'hostel' => 'required',
             'head' => 'required',
         ]);

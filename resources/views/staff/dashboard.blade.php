@@ -169,9 +169,15 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <h6 class="mb-1 text-dark text-sm">Tickets</h6>
+                                        @if($user->head == 1)
                                         <span class="text-xs">{{count($past)}} closed, <span
                                                 class="font-weight-bold">{{count($active)}}
                                                 open</span></span>
+                                        @else
+                                        <span class="text-xs">{{count($assign_resolved)}} closed, <span
+                                                class="font-weight-bold">{{count($assign)}}
+                                                open</span></span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="d-flex">

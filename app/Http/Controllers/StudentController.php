@@ -116,13 +116,13 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name' => ['required', 'min:3'],
+            'name' => ['required', 'min:3', Rule::unique('users', 'name')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'contact' => ['required'],
+            'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
             'hostel' => ['required'],
             'block' => ['required'],
-            'floor' => ['required'],
-            'room' => ['required']
+            'floor' => ['required', 'digits:1'],
+            'room' => ['required'],
         ]);
 
         $formFields['password'] = 'password';

@@ -19,7 +19,7 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name' => 'required|max:20',
+            'name' => 'required|max:20|min:3',
             'email' => ['required', 'email'],
             'feedback' => 'required|max:300',
         ]);

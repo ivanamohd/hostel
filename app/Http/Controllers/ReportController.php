@@ -86,7 +86,7 @@ class ReportController extends Controller
         } else {
             $formFieldsStudent = $request->validate([
                 'category' => 'required',
-                'description' => 'required',
+                'description' => 'required|max:150',
             ]);
 
             if ($request->hasFile('evidence')) {
@@ -145,7 +145,7 @@ class ReportController extends Controller
     {
         $formFieldsStudent = $request->validate([
             'category' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:150',
             'priority' => 'required',
             'assign' => 'required',
         ]);
