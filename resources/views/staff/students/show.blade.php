@@ -101,6 +101,11 @@
                         </div>
                         <div class="text-center">
                             <div>
+                                <a href="/chatify/{{$student->id}}" target="_new">
+                                    <button style="background: #D3BF96" class="btn text-white w-100 my-2 mb-2">Chat
+                                        with this student</button></a>
+                            </div>
+                            <div>
                                 <a href="/staff/reports/create/{{$student->id}}">
                                     <button class="btn bg-gradient-white w-100 my-2 mb-2">Create Ticket</button></a>
                             </div>

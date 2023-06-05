@@ -142,11 +142,15 @@
                             </script>
                         </div>
                         <div class="text-center">
+                            <div>
+                                <a href="/chatify/{{$report->user_id}}" target="_new">
+                                    <button class="btn bg-gradient-white w-100 my-2 mb-2">Chat with Student</button></a>
+                            </div>
                             <form method="POST" action="/staff/reports/{{$report->id}}">
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('Are you sure?')"
-                                    class="btn bg-gradient-dark w-100 my-4 mb-2">Delete</button>
+                                    class="btn bg-gradient-dark w-100 my-2 mb-2">Delete</button>
                             </form>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use App\Models\Staff;
 use App\Models\User;
 use App\Models\Report;
@@ -20,7 +21,12 @@ class StaffController extends Controller
             'reports' => Report::latest()->where('hostel', '=', $user->hostel)->paginate(7),
             'past' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved']])->paginate(7),
             'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved']])->paginate(7),
-            'students' => User::latest()->where([['role', '=', '0'], ['hostel', '=', $user->hostel]])->paginate(7)
+            'students' => User::latest()->where([['role', '=', '0'], ['hostel', '=', $user->hostel]])->paginate(7),
+            'feedback' => Feedback::latest()->paginate(7),
+
+            'assign' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved'], ['assign', '=', $user->name]])->paginate(7),
+            'assign_resolved' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved'], ['assign', '=', $user->name]])->paginate(7),
+            'user' => $user,
         ]);
     }
 

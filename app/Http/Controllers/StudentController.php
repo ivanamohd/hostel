@@ -21,6 +21,7 @@ class StudentController extends Controller
             'reports' => Report::latest()->where([['hostel', '=', $user->hostel], ['user_id', '=', $user->id]])->paginate(7),
             'past' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '=', 'Resolved'], ['user_id', '=', $user->id]])->paginate(7),
             'active' => Report::latest()->where([['hostel', '=', $user->hostel], ['status', '!=', 'Resolved'], ['user_id', '=', $user->id]])->paginate(7),
+            'staff' => User::latest()->where([['role', '=', '1'], ['hostel', '=', $user->hostel]])->paginate(7),
         ]);
     }
 
