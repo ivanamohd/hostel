@@ -14,7 +14,8 @@
     <b>Ticket Details:</b>
     <p>ID: {{$data['id']}}</p>
     <p>Category: {{$data['category']}}</p>
-    <p>Description: {{$data['description']}}</p> <br>
+    <p>Description: {{$data['description']}}</p>
+    <p>Person In Charge: {{$data['assign']}}</p> <br>
 </body>
 
 </html>

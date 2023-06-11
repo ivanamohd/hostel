@@ -7,6 +7,7 @@ use App\Models\Staff;
 use App\Models\User;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class StaffController extends Controller
 {
@@ -50,8 +51,8 @@ class StaffController extends Controller
     public function update(Request $request, Staff $staff)
     {
         $formFields = $request->validate([
-            'name' => 'required',
-            'contact' => 'required',
+            'name' => ['required', 'min:3', Rule::unique('users', 'name')],
+            'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
         ]);
 
         $staff->update($formFields);

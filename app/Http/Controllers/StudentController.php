@@ -79,11 +79,11 @@ class StudentController extends Controller
 
         if ($user->role == 1) {
             $formFields = $request->validate([
-                'name' => 'required',
-                'contact' => 'required',
+                'name' => ['required', 'min:3', Rule::unique('users', 'name')],
+                'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
                 'hostel' => 'required',
                 'block' => 'required',
-                'floor' => 'required',
+                'floor' => ['required', 'digits:1'],
                 'room' => 'required',
             ]);
 
@@ -92,11 +92,11 @@ class StudentController extends Controller
             return back()->with('message', 'Student updated successfully!');
         } else {
             $formFields = $request->validate([
-                'name' => 'required',
-                'contact' => 'required',
+                'name' => ['required', 'min:3', Rule::unique('users', 'name')],
+                'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
                 'hostel' => 'required',
                 'block' => 'required',
-                'floor' => 'required',
+                'floor' => ['required', 'digits:1'],
                 'room' => 'required',
             ]);
 
