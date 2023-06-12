@@ -114,6 +114,7 @@ class ReportController extends Controller
                 'category' => $report->category,
                 'description' => $report->description,
                 'status' => $report->status,
+                'assign' => $report->assign,
             ];
             try {
                 Mail::to($report->email)->send(new MailNotify($data, 'new'));
@@ -173,6 +174,7 @@ class ReportController extends Controller
             'category' => $report->category,
             'description' => $report->description,
             'status' => $report->status,
+            'assign' => $report->assign,
         ];
         try {
             Mail::to($report->email)->send(new MailNotify($data, 'new'));
@@ -228,6 +230,7 @@ class ReportController extends Controller
                     'category' => $report->category,
                     'description' => $report->description,
                     'status' => $report->status,
+                    'assign' => $report->assign,
                 ];
 
                 try {

@@ -115,7 +115,7 @@
                                     <td class="align-middle text-center">
                                         <span
                                             class="text-secondary text-xs font-weight-bold">{{$report->created_at->format('d/m/Y
-                                            h:i:s')}}</span>
+                                            H:i:s')}}</span>
                                     </td>
                                     <td class="align-middle">
                                         <a href="/staff/reports/{{$report->id}}"

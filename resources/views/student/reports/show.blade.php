@@ -124,12 +124,12 @@
                             <div class="mb-3 me-3">
                                 <label>Created At:</label>
                                 <span class="form-control" style="width:262px">{{$report->created_at->format('d/m/Y
-                                    h:i:s')}}</span>
+                                    H:i:s')}}</span>
                             </div>
                             <div class="mb-3 me-3">
                                 <label>Updated At:</label>
                                 <span class="form-control" style="width:262px">{{$report->updated_at->format('d/m/Y
-                                    h:i:s')}}</span>
+                                    H:i:s')}}</span>
                             </div>
                         </div>
 
