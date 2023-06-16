@@ -27,7 +27,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name' => ['required', 'min:3', Rule::unique('users', 'name')],
+            'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
             'hostel' => 'required',
@@ -66,8 +66,8 @@ class AdminController extends Controller
     public function update(Request $request, Staff $staff)
     {
         $formFields = $request->validate([
-            'name' => 'required',
-            'contact' => 'required',
+            'name' => ['required', 'min:3'],
+            'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
             'hostel' => 'required',
             'head' => 'required',
         ]);

@@ -51,7 +51,7 @@ class StaffController extends Controller
     public function update(Request $request, Staff $staff)
     {
         $formFields = $request->validate([
-            'name' => ['required', 'min:3', Rule::unique('users', 'name')],
+            'name' => ['required', 'min:3'],
             'contact' => ['required', 'starts_with:0', 'digits_between:10,11'],
         ]);
 
