@@ -131,7 +131,7 @@
                                 style="border:none; color:black">Click Here</button><br>
                             <img id="my-image"
                                 style="display: block; margin-left: auto; margin-right: auto; width: 50%;"
-                                src="{{$report->evidence ? asset('storage/'.$report->evidence) : asset('/images/noimage.jpg')}}"
+                                src="{{$report->evidence ? Storage::disk('s3')->url($report->evidence) : asset('/images/noimage.jpg')}}"
                                 alt="" hidden />
                             <script>
                                 const showImageButton = document.getElementById("show-image-button");

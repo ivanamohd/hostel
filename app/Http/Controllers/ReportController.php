@@ -90,7 +90,7 @@ class ReportController extends Controller
             ]);
 
             if ($request->hasFile('evidence')) {
-                $formFieldsStudent['evidence'] = $request->file('evidence')->store('evidence', 'public');
+                $formFieldsStudent['evidence'] = $request->file('evidence')->store('evidence', 's3');
             }
 
             $formFieldsStudent['user_id'] = auth()->id();
@@ -152,7 +152,7 @@ class ReportController extends Controller
         ]);
 
         if ($request->hasFile('evidence')) {
-            $formFieldsStudent['evidence'] = $request->file('evidence')->store('evidence', 'public');
+            $formFieldsStudent['evidence'] = $request->file('evidence')->store('evidence', 's3');
         }
 
         $formFieldsStudent['user_id'] = $student->id;
@@ -216,9 +216,9 @@ class ReportController extends Controller
                 $statusChanged = false;
             }
 
-            if ($request->hasFile('evidence')) {
-                $formFields['evidence'] = $request->file('evidence')->store('evidence', 'public');
-            }
+            // if ($request->hasFile('evidence')) {
+            //     $formFields['evidence'] = $request->file('evidence')->store('evidence', 'public');
+            // }
 
             $report->update($formFields);
 
