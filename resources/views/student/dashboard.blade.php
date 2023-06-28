@@ -172,63 +172,6 @@
             </div>
         </div>
         {{-- End report --}}
-
-        {{-- Start staff --}}
-        <div class="row mt-4">
-            <div class="col-lg-12 mb-lg-0 mb-4">
-                <div class="card ">
-                    <div class="card-header pb-0 p-3">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Staff List</h6>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table align-items-center ">
-                            @unless (count($staff) == 0)
-                            <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Staff ID</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Name</th>
-                                    <th class="text-secondary opacity-7"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($staff as $staf)
-                                <tr>
-                                    <td>
-                                        <div class="ps-3">
-                                            <span class="text-secondary text-xs font-weight-bold">{{$staf->id}}</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">
-                                            {{$staf->name}}</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="/chatify/{{$staf->id}}" class="text-secondary font-weight-bold text-xs"
-                                            target="_new" data-toggle="tooltip" data-original-title="Chat">
-                                            Chat
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                @else
-                                <p class="mx-3 text-xs">No Records Found</p>
-                                @endunless
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Card footer -->
-                    <div class="card-footer pb-0">
-                        {{$staff->links()}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- End report --}}
         @include('layout.staff.footer')
     </div>
     @endsection

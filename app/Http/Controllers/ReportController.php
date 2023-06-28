@@ -54,6 +54,7 @@ class ReportController extends Controller
         } else {
             return view('student.reports.show', [
                 'report' => $report,
+                'pic' => Report::join('users', 'users.name', '=', 'reports.assign')->select('users.id', 'users.name')->where('users.name', $report->assign)->first(),
             ]);
         }
     }
